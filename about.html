@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu | NamBộ Specialties</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <span class="logo-icon">🌴</span>
+                <span class="logo-text">NamBộ<span>Specialties</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Trang chủ</a>
+                <a href="about.html" class="active">Giới thiệu</a>
+                <a href="specialties.html">Đặc sản</a>
+                <a href="map.html">Bản đồ đặc sản</a>
+                <a href="intro.html">Câu chuyện sản vật</a>
+            </div>
+            <div class="nav-actions">
+                <button class="search-btn"><i data-lucide="search"></i></button>
+                <button class="cart-btn" onclick="window.location.href='index.html#cart'">
+                    <i data-lucide="shopping-cart"></i>
+                </button>
+                <button class="login-btn">Đăng nhập</button>
+                <button class="seller-btn" onclick="window.location.href='dashboard.html'">Kênh người bán</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="about-page">
+        <section class="about-hero">
+            <div class="about-hero-content">
+                <h1 class="fade-in">Kết Nối Tinh Hoa Phương Nam</h1>
+                <p class="fade-in-delay">Hành trình gìn giữ bản sắc văn hóa và thúc đẩy kinh tế địa phương thông qua
+                    công nghệ số.</p>
+            </div>
+        </section>
+
+        <!-- Sứ mệnh & Mục tiêu -->
+        <section id="mission" class="about-detail-section">
+            <div class="about-container">
+                <div class="about-text">
+                    <span class="badge-small">Sứ mệnh & Mục tiêu</span>
+                    <h2>Thúc đẩy kinh tế địa phương qua chuyển đổi số</h2>
+                    <p>NamBộ Specialties ra đời với mục tiêu cốt lõi là hỗ trợ các hộ kinh doanh nhỏ lẻ và làng nghề
+                        truyền thống tại Miền Nam tiếp cận với nền tảng thương mại điện tử hiện đại.</p>
+                    <p>Chúng tôi không chỉ bán sản phẩm, mà còn cung cấp giải pháp số hóa toàn diện: từ quản lý gian
+                        hàng, tối ưu hóa vận chuyển đến quảng bá thương hiệu. Qua đó, góp phần thúc đẩy kinh tế vùng và
+                        tạo ra sinh kế bền vững cho người dân địa phương.</p>
+                </div>
+                <div class="about-image">
+                    <img src="img/lang-nghe-banh-trang-trang-bang-net-dep-truyen-thong-cua-nguoi-dan-nam-bo-01-1661881528.jpg"
+                        alt="Phát triển địa phương">
+                </div>
+            </div>
+        </section>
+
+        <!-- Câu chuyện văn hóa -->
+        <section id="culture-story" class="about-detail-section bg-warm">
+            <div class="about-container reverse">
+                <div class="about-text">
+                    <span class="badge-small">Câu chuyện văn hóa</span>
+                    <h2>Bản sắc Việt trong từng hương vị đặc sản</h2>
+                    <p>Miền Nam Việt Nam là một vùng đất kỳ diệu with sự phong phú về sản vật và chiều sâu văn hóa ẩm
+                        thực. Từ vị ngọt thanh của kẹo dừa Bến Tre đến hương thơm nồng nàn của mắm Châu Đốc, mỗi đặc sản
+                        đều là một "đại sứ văn hóa" của vùng đất chín rồng.</p>
+                    <p>Thông qua nền tảng này, chúng tôi mong muốn bảo tồn và lan tỏa những giá trị truyền thống ấy, để
+                        bản sắc Việt Nam luôn sống động và phát triển mạnh mẽ trong kỷ nguyên số.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://product.hstatic.net/200000507787/product/thiet_ke_chua_co_ten__23__e2812cf16efe44469080a79e2a959f5b_master.png"
+                        alt="Văn hóa Miền Nam">
+                </div>
+            </div>
+        </section>
+
+        <!-- Giới thiệu nguồn gốc -->
+        <section id="moderation" class="about-detail-section">
+            <div class="about-container">
+                <div class="about-text">
+                    <span class="badge-small">Giới thiệu nguồn gốc</span>
+                    <h2>Cam kết chính gốc - Quy trình kiểm duyệt nghiêm ngặt</h2>
+                    <p>Để đảm bảo mỗi sản phẩm đến tay khách hàng đều là đặc sản chính gốc with xuất xứ rõ ràng, NamBộ
+                        Specialties áp dụng quy trình kiểm duyệt gian hàng đa tầng:</p>
+                    <ul class="check-list">
+                        <li><i data-lucide="shield-check"></i> <strong>Xác minh thực tế:</strong> Đội ngũ chúng tôi trực
+                            tiếp khảo sát cơ sở sản xuất và vùng nguyên liệu.</li>
+                        <li><i data-lucide="shield-check"></i> <strong>Kiểm định chất lượng:</strong> Sản phẩm phải đạt
+                            tiêu chuẩn ATTP và có giấy phép lưu hành hợp lệ.</li>
+                        <li><i data-lucide="shield-check"></i> <strong>Minh bạch thông tin:</strong> Mỗi sản phẩm đều
+                            đính kèm câu chuyện về nghệ nhân và nguồn gốc địa lý rõ ràng.</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://vinacontrolce.vn/wp-content/uploads/2023/07/chat-luong-san-pham-la-gi-1-768x438.jpg"
+                        alt="Kiểm duyệt chất lượng">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">🌴</span>
+                    <span class="logo-text">NamBộ<span>Specialties</span></span>
+                </div>
+                <p>Nâng tầm giá trị đặc sản Việt, hỗ trợ chuyển đổi số cho hộ kinh doanh địa phương.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NamBộ Specialties. Thiết kế bởi Antigravity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu Đặc Sản | NamBộ Specialties</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <nav id="navbar" class="scrolled">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <span class="logo-icon">🌴</span>
+                <span class="logo-text">NamBộ<span>Specialties</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Trang chủ</a>
+                <a href="about.html">Giới thiệu</a>
+                <a href="specialties.html">Đặc sản</a>
+                <a href="map.html">Bản đồ đặc sản</a>
+                <a href="intro.html" class="active">Câu chuyện sản vật</a>
+            </div>
+            <div class="nav-actions">
+                <button class="search-btn"><i data-lucide="search"></i></button>
+                <button class="cart-btn" onclick="window.location.href='index.html#cart'">
+                    <i data-lucide="shopping-cart"></i>
+                </button>
+                <button class="login-btn">Đăng nhập</button>
+                <button class="seller-btn" onclick="window.location.href='dashboard.html'">Kênh người bán</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="intro-page">
+        <section class="intro-hero">
+            <div class="intro-hero-card">
+                <div class="intro-hero-content">
+                    <span class="slide-number">03</span>
+                    <h1 class="fade-in">Hương Vị Miền Nam <br>Tinh Hoa Từ Đất Mẹ</h1>
+                    <p class="fade-in-delay">Khám phá những câu chuyện đằng sau mỗi món quà quê, nơi tâm huyết của người
+                        nông dân hòa quyện cùng bản sắc vùng miền.</p>
+                    <button class="cta-btn fade-in-delay-2">Khám phá nhanh <i data-lucide="arrow-right"></i></button>
+                </div>
+                <div class="hero-pagination">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-grid">
+            <div class="story-container">
+                <div class="story-card large fade-in-up">
+                    <div class="story-img" style="background-image: url('img/image\ copy\ 3.png')"></div>
+                    <div class="story-info">
+                        <span class="story-tag">Văn hóa Bến Tre</span>
+                        <h2>Nghề làm kẹo dừa - Vị ngọt của sự kiên trì</h2>
+                        <p>Từ những quả dừa già rám vỏ, người thợ Bến Tre đã khéo léo tạo nên món kẹo thơm béo, đậm đà.
+                            Đó không chỉ là món ăn, mà là biểu tượng của sự cần cù, chịu khó của người dân xứ dừa.</p>
+                        <a href="#" class="read-more">Đọc thêm <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="story-card fade-in-up">
+                    <div class="story-img" style="background-image: url('img/image\ copy\ 4.png')"></div>
+                    <div class="story-info">
+                        <span class="story-tag">Đặc sản An Giang</span>
+                        <h2>Mắm Châu Đốc - Bản giao hưởng của vị giác</h2>
+                        <p>Nổi tiếng khắp vùng Mekong, các loại mắm Châu Đốc mang trong mình hương vị đặc trưng của vùng
+                            sông nước Thất Sơn hùng vĩ.</p>
+                        <a href="#" class="read-more">Đọc thêm <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="story-card fade-in-up">
+                    <div class="story-img" style="background-image: url('img/image\ copy\ 5.png')"></div>
+                    <div class="story-info">
+                        <span class="story-tag">Vùng đất Sen Hồng</span>
+                        <h2>Nem Lai Vung - Đỏ thắm nghĩa tình Đồng Tháp</h2>
+                        <p>Màu đỏ của thịt, vị chua thanh của lá chùm ruột, vị cay của tiêu... tất cả tạo nên một món
+                            quà quê không thể thiếu mỗi khi ghé thăm Đồng Tháp.</p>
+                        <a href="#" class="read-more">Đọc thêm <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cultural-quote">
+            <div class="quote-content">
+                <i data-lucide="quote" class="quote-icon"></i>
+                <blockquote>
+                    "Ăn quả nhớ kẻ trồng cây, ăn miếng đặc sản nhớ người thợ lành nghề. Mỗi sản phẩm là một lời nhắn nhủ
+                    từ quê hương gửi đến những người con xa xứ."
+                </blockquote>
+                <cite>— Nghệ nhân dân gian Miền Nam</cite>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-card">
+                <h2>Bạn muốn trải nghiệm những hương vị này?</h2>
+                <p>Ghé thăm gian hàng của chúng tôi để mang tinh hoa Miền Nam về ngôi nhà của bạn.</p>
+                <button class="btn-primary" onclick="window.location.href='specialties.html'">Mua sắm ngay</button>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">🌴</span>
+                    <span class="logo-text">NamBộ<span>Specialties</span></span>
+                </div>
+                <p>Nâng tầm giá trị đặc sản Việt, hỗ trợ chuyển đổi số cho hộ kinh doanh địa phương.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NamBộ Specialties. Thiết kế bởi Antigravity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,233 @@
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: #F8F9FA;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    background: white;
+    border-right: 1px solid #EEE;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+    position: fixed;
+    height: 100vh;
+}
+
+.sidebar .logo {
+    padding: 0 2rem;
+    margin-bottom: 3rem;
+}
+
+.sidebar-nav {
+    flex: 1;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: var(--transition);
+    border-left: 4px solid transparent;
+}
+
+.sidebar-nav a:hover, .sidebar-nav a.active {
+    background: rgba(212, 78, 40, 0.05);
+    color: var(--primary);
+    border-left-color: var(--primary);
+}
+
+.sidebar-footer {
+    padding: 2rem;
+    border-top: 1px solid #EEE;
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    background: #FEECEB;
+    color: #EB5757;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Main Content */
+.dashboard-main {
+    margin-left: 280px;
+    flex: 1;
+}
+
+.dashboard-header {
+    height: 80px;
+    background: white;
+    border-bottom: 1px solid #EEE;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+}
+
+.header-search {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #F4F4F4;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    width: 400px;
+}
+
+.header-search input {
+    background: none;
+    border: none;
+    outline: none;
+    flex: 1;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.dashboard-content {
+    padding: 3rem;
+}
+
+.welcome-banner {
+    margin-bottom: 3rem;
+}
+
+.welcome-banner h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Stats */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.stat-info p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.stat-change {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.stat-change.up { color: var(--secondary); }
+.stat-change.down { color: #EB5757; }
+
+/* Table */
+.recent-orders {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 1rem;
+    color: var(--text-muted);
+    border-bottom: 1px solid #EEE;
+    font-weight: 600;
+}
+
+.data-table td {
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid #F8F9FA;
+}
+
+.badge {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge.pending { background: #FFF4E5; color: #FF9800; }
+.badge.shipping { background: #E8F5E9; color: #4CAF50; }
+
+.action-btn {
+    padding: 0.5rem 1rem;
+    border: 1.5px solid #EEE;
+    background: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.action-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}

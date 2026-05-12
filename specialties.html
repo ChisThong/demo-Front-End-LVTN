@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh mục Đặc sản | NamBộ Specialties</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <nav id="navbar" class="scrolled permanent-opaque">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <span class="logo-icon">🌴</span>
+                <span class="logo-text">NamBộ<span>Specialties</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Trang chủ</a>
+                <a href="about.html">Giới thiệu</a>
+                <a href="specialties.html" class="active">Đặc sản</a>
+                <a href="map.html">Bản đồ đặc sản</a>
+                <a href="intro.html">Câu chuyện sản vật</a>
+            </div>
+            <div class="nav-actions">
+                <button class="search-btn"><i data-lucide="search"></i></button>
+                <button class="cart-btn" onclick="window.location.href='index.html#cart'">
+                    <i data-lucide="shopping-cart"></i>
+                </button>
+                <button class="login-btn">Đăng nhập</button>
+                <button class="seller-btn" onclick="window.location.href='dashboard.html'">Kênh người bán</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="specialties-page">
+        <section class="page-header" style="background: var(--primary); height: 200px;">
+            <div class="header-content">
+                <h1>Danh Mục Đặc Sản</h1>
+                <p>Khám phá tinh hoa ẩm thực từ khắp các tỉnh thành Miền Nam</p>
+            </div>
+        </section>
+
+        <section class="products-explorer">
+            <div class="explorer-container">
+                <aside class="filter-sidebar">
+                    <div class="filter-group">
+                        <h3 class="filter-toggle">Danh mục <i data-lucide="chevron-down"></i></h3>
+                        <div class="filter-content">
+                            <ul class="category-list">
+                                <li class="active" data-category="all">Tất cả</li>
+                                <li data-category="fruits">Trái cây tươi</li>
+                                <li data-category="sweets">Bánh kẹo</li>
+                                <li data-category="dried">Đồ khô & Mắm</li>
+                                <li data-category="beverages">Đồ uống</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3 class="filter-toggle">Vùng miền <i data-lucide="chevron-down"></i></h3>
+                        <div class="filter-content">
+                            <select id="region-filter">
+                                <option value="all">Toàn miền Nam</option>
+                                <option value="tien-giang">Tiền Giang</option>
+                                <option value="ben-tre">Bến Tre</option>
+                                <option value="can-tho">Cần Thơ</option>
+                                <option value="an-giang">An Giang</option>
+                                <option value="dong-thap">Đồng Tháp</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3 class="filter-toggle">Giá cả <i data-lucide="chevron-down"></i></h3>
+                        <div class="filter-content">
+                            <div class="price-range">
+                                <input type="range" min="0" max="1000000" step="50000" id="priceRange">
+                                <div class="price-labels">
+                                    <span>0đ</span>
+                                    <span id="priceValue">1.000.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="products-grid-container">
+                    <div class="search-bar-inline">
+                        <input type="text" placeholder="Tìm kiếm đặc sản..." id="productSearch">
+                        <i data-lucide="search"></i>
+                    </div>
+
+                    <div class="products-grid" id="productGrid">
+                        <!-- Products will be injected by main.js -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">🌴</span>
+                    <span class="logo-text">NamBộ<span>Specialties</span></span>
+                </div>
+                <p>Nâng tầm giá trị đặc sản Việt, hỗ trợ chuyển đổi số cho hộ kinh doanh địa phương.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NamBộ Specialties. Thiết kế bởi Antigravity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        lucide.createIcons();
+        
+        // Filter Sidebar Accordion
+        document.querySelectorAll('.filter-toggle').forEach(header => {
+            header.addEventListener('click', () => {
+                const group = header.parentElement;
+                group.classList.toggle('collapsed');
+            });
+        });
+    </script>
+</body>
+</html>

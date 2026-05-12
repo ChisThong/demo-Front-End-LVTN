@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặc Sản Miền Nam | Marketplace</title>
+    <meta name="description"
+        content="Khám phá và mua sắm đặc sản Miền Nam Việt Nam - Kết nối hộ kinh doanh địa phương với khách hàng.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌴</span>
+                <span class="logo-text">NamBộ<span>Specialties</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="active">Trang chủ</a>
+                <a href="about.html">Giới thiệu</a>
+                <a href="specialties.html">Đặc sản</a>
+                <a href="map.html">Bản đồ đặc sản</a>
+                <a href="intro.html">Câu chuyện sản vật</a>
+            </div>
+            <div class="nav-actions">
+                <button class="search-btn" id="searchBtn"><i data-lucide="search"></i></button>
+                <button class="cart-btn" id="cartBtn">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="login-btn" id="loginBtn">Đăng nhập</button>
+                <button class="seller-btn" id="sellerBtn">Kênh người bán</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1 class="fade-in">Hương vị Miền Nam <br>Tinh Hoa Văn Hóa - Kết Nối Phương Nam</h1>
+                <p class="fade-in-delay">Hỗ trợ hộ kinh doanh địa phương, quảng bá bản sắc văn hóa Việt Nam qua những
+                    đặc sản tinh túy nhất từ vùng đất chín rồng.</p>
+                <div class="hero-btns fade-in-delay-2">
+                    <button class="btn-primary">Mua sắm ngay</button>
+                </div>
+            </div>
+            <div class="hero-overlay"></div>
+        </section>
+
+
+        <!-- Region Filter -->
+        <section id="regions">
+            <div class="section-header">
+                <h2>Khám phá theo khu vực</h2>
+                <p>Tìm kiếm đặc sản theo từng tỉnh thành Miền Nam</p>
+            </div>
+            <div class="region-grid">
+                <div class="region-card" data-region="tiengiang">
+                    <div class="region-img"
+                        style="background-image: url('https://static.mservice.io/blogscontents/momo-upload-api-221028143745-638025646651875182.jpg')">
+                    </div>
+                    <div class="region-info">
+                        <h3>Tiền Giang</h3>
+                        <p>Vương quốc trái cây</p>
+                    </div>
+                </div>
+                <div class="region-card" data-region="bentre">
+                    <div class="region-img"
+                        style="background-image: url('https://sinhcafe.com/images/ben-tre-night-market-2.png')">
+                    </div>
+                    <div class="region-info">
+                        <h3>Bến Tre</h3>
+                        <p>Xứ sở dừa xanh</p>
+                    </div>
+                </div>
+                <div class="region-card" data-region="cantho">
+                    <div class="region-img"
+                        style="background-image: url('https://canthoriviu.vn/wp-content/uploads/2022/07/1d-min.jpg')">
+                    </div>
+                    <div class="region-info">
+                        <h3>Cần Thơ</h3>
+                        <p>Tây Đô gạo trắng nước trong</p>
+                    </div>
+                </div>
+                <div class="region-card" data-region="dongthap">
+                    <div class="region-img"
+                        style="background-image: url('https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://cdn-media.sforum.vn/storage/app/media/thanhhuyen/%E1%BA%A3nh%20%C4%91%E1%BA%B9p%20%C4%91%E1%BB%93ng%20th%C3%A1p/1/anh-dep-dong-thap-9.jpg')">
+                    </div>
+                    <div class="region-info">
+                        <h3>Đồng Tháp</h3>
+                        <p>Thủ phủ Đất Sen Hồng</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section id="featured">
+            <div class="section-header">
+                <h2>Sản phẩm nổi bật</h2>
+                <div class="filter-tabs">
+                    <button class="tab active">Tất cả</button>
+                    <button class="tab">Trái cây</button>
+                    <button class="tab">Bánh kẹo</button>
+                    <button class="tab">Thủy hải sản</button>
+                </div>
+            </div>
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be injected by JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">🌴</span>
+                    <span class="logo-text">NamBộ<span>Specialties</span></span>
+                </div>
+                <p>Nâng tầm giá trị đặc sản Việt, hỗ trợ chuyển đổi số cho hộ kinh doanh địa phương.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Về chúng tôi</h4>
+                <a href="#">Giới thiệu</a>
+                <a href="#">Liên hệ</a>
+                <a href="#">Chính sách bảo mật</a>
+            </div>
+            <div class="footer-links">
+                <h4>Dành cho người bán</h4>
+                <a href="#">Đăng ký gian hàng</a>
+                <a href="#">Quy định bán hàng</a>
+                <a href="#">Thanh toán & Đối soát</a>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Bản tin</h4>
+                <p>Nhận thông báo về các đặc sản mới nhất.</p>
+                <div class="subscribe-box">
+                    <input type="email" placeholder="Email của bạn">
+                    <button>Gửi</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 NamBộ Specialties. Thiết kế bởi Antigravity.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
