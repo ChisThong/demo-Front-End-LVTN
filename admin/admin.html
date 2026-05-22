@@ -148,6 +148,8 @@
                                 <button class="icon-btn" title="Từ chối"><i data-lucide="x"
                                         style="color: #EF4444;"></i></button>
                                 <button class="icon-btn" title="Chi tiết"><i data-lucide="eye"></i></button>
+                                <button class="icon-btn" title="Xóa"><i data-lucide="trash-2"
+                                        style="color: #EF4444;"></i></button>
                             </td>
                         </tr>
                         <tr>
@@ -158,6 +160,8 @@
                             <td><span class="badge badge-success">Đã duyệt</span></td>
                             <td class="action-btns">
                                 <button class="icon-btn" title="Chi tiết"><i data-lucide="eye"></i></button>
+                                <button class="icon-btn" title="Xóa"><i data-lucide="trash-2"
+                                        style="color: #EF4444;"></i></button>
                             </td>
                         </tr>
                         <tr>
@@ -170,6 +174,8 @@
                                 <button class="icon-btn" title="Duyệt"><i data-lucide="check"
                                         style="color: #10B981;"></i></button>
                                 <button class="icon-btn" title="Chi tiết"><i data-lucide="eye"></i></button>
+                                <button class="icon-btn" title="Xóa"><i data-lucide="trash-2"
+                                        style="color: #EF4444;"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -214,6 +220,8 @@
                                         style="color: #10B981;"></i></button>
                                 <button class="icon-btn" title="Từ chối"><i data-lucide="x"
                                         style="color: #EF4444;"></i></button>
+                                <button class="icon-btn" title="Xóa"><i data-lucide="trash-2"
+                                        style="color: #EF4444;"></i></button>
                             </td>
                         </tr>
                         <tr>
@@ -223,7 +231,9 @@
                             <td>8</td>
                             <td><span class="badge badge-success">Đã duyệt</span></td>
                             <td class="action-btns">
-                                <button class="icon-btn"><i data-lucide="eye"></i></button>
+                                <button class="icon-btn" title="Chi tiết"><i data-lucide="eye"></i></button>
+                                <button class="icon-btn" title="Xóa"><i data-lucide="trash-2"
+                                        style="color: #EF4444;"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -367,7 +377,56 @@
             </div>
             <div class="map-config-layout">
                 <div class="province-list">
-                    <div class="province-item active">Bến Tre <i data-lucide="chevron-right" style="width:16px;"></i>
+                    <!-- Bến Tre (Tree View) -->
+                    <div class="tree-node-container">
+                        <div class="province-item active" onclick="toggleTree(this)">
+                            Bến Tre <i data-lucide="chevron-right" style="width:16px; transition: transform 0.3s; transform: rotate(90deg);"></i>
+                        </div>
+                        <div class="tree-children open">
+                            <!-- Commune 1: Phường An Hội (Merged) -->
+                            <div class="tree-node-container">
+                                <div class="tree-item" onclick="toggleTree(this)">
+                                    Phường An Hội <i data-lucide="chevron-right" style="width:14px; transition: transform 0.3s;"></i>
+                                </div>
+                                <div class="tree-sub-children">
+                                    <div class="tree-sub-item">Khu phố 1</div>
+                                    <div class="tree-sub-item">Khu phố 2</div>
+                                    <div class="tree-sub-item">Khu phố 3</div>
+                                    <div class="tree-sub-item">Khu phố 4</div>
+                                </div>
+                            </div>
+                            <!-- Commune 2: Xã An Phước (Merged) -->
+                            <div class="tree-node-container">
+                                <div class="tree-item" onclick="toggleTree(this)">
+                                    Xã An Phước <i data-lucide="chevron-right" style="width:14px; transition: transform 0.3s;"></i>
+                                </div>
+                                <div class="tree-sub-children">
+                                    <div class="tree-sub-item">Ấp An Phú</div>
+                                    <div class="tree-sub-item">Ấp Phước Hậu</div>
+                                    <div class="tree-sub-item">Ấp Hóa 1</div>
+                                </div>
+                            </div>
+                            <!-- Commune 3: Xã Tường Đa (Merged) -->
+                            <div class="tree-node-container">
+                                <div class="tree-item" onclick="toggleTree(this)">
+                                    Xã Tường Đa <i data-lucide="chevron-right" style="width:14px; transition: transform 0.3s;"></i>
+                                </div>
+                                <div class="tree-sub-children">
+                                    <div class="tree-sub-item">Ấp Tường Sơn</div>
+                                    <div class="tree-sub-item">Ấp Tường Hiệp</div>
+                                </div>
+                            </div>
+                            <!-- Commune 4: TT Châu Thành (Merged) -->
+                            <div class="tree-node-container">
+                                <div class="tree-item" onclick="toggleTree(this)">
+                                    TT Châu Thành <i data-lucide="chevron-right" style="width:14px; transition: transform 0.3s;"></i>
+                                </div>
+                                <div class="tree-sub-children">
+                                    <div class="tree-sub-item">Khu phố 1</div>
+                                    <div class="tree-sub-item">Khu phố 2</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="province-item">Đồng Tháp <i data-lucide="chevron-right" style="width:16px;"></i></div>
                     <div class="province-item">Tiền Giang <i data-lucide="chevron-right" style="width:16px;"></i></div>
@@ -501,14 +560,11 @@
                 <div class="chart-section">
                     <div class="admin-card" style="height: 100%;">
                         <div class="card-header" style="margin-bottom: 1rem;">
-                            <h3>Doanh thu theo tuần</h3>
+                            <h3>Doanh thu theo tháng</h3>
                             <button class="icon-btn"><i data-lucide="download"></i></button>
                         </div>
-                        <div class="chart-mockup" style="box-shadow: none; padding: 1rem 0; height: 250px;">
-                            <div class="chart-bar" style="height: 30%;"><span>T1</span></div>
-                            <div class="chart-bar" style="height: 55%;"><span>T2</span></div>
-                            <div class="chart-bar" style="height: 45%;"><span>T3</span></div>
-                            <div class="chart-bar" style="height: 85%;"><span>T4</span></div>
+                        <div style="position: relative; height: 350px; width: 100%;">
+                            <canvas id="adminRevenueChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -609,8 +665,90 @@
         </div>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         lucide.createIcons();
+
+        // Initialize Admin Revenue Chart (Combo Bar & Line)
+        const ctxAdmin = document.getElementById('adminRevenueChart').getContext('2d');
+        const adminRevenueChart = new Chart(ctxAdmin, {
+            type: 'bar',
+            data: {
+                labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7'],
+                datasets: [
+                    {
+                        type: 'line',
+                        label: 'Tốc độ tăng trưởng (%)',
+                        data: [12, 2.5, 4.8, 2.7, 4.1, 0.3, -4.5],
+                        borderColor: 'red',
+                        backgroundColor: 'red',
+                        borderWidth: 2,
+                        yAxisID: 'y1',
+                        tension: 0,
+                        pointBackgroundColor: 'red',
+                        pointBorderColor: 'red',
+                        pointRadius: 3
+                    },
+                    {
+                        type: 'bar',
+                        label: 'Doanh thu (Triệu VNĐ)',
+                        data: [53.5, 212.6, 3132, 4968.4, 5759.1, 5123.3, 5040.1],
+                        backgroundColor: '#92D050',
+                        borderColor: '#000000',
+                        borderWidth: 1,
+                        yAxisID: 'y',
+                        barPercentage: 0.5
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Triệu VNĐ',
+                            font: { weight: 'bold' }
+                        },
+                        min: 0,
+                        max: 7000
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: '%',
+                            font: { weight: 'bold' }
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        },
+                        min: -6,
+                        max: 14
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: false,
+                            boxWidth: 20
+                        }
+                    }
+                }
+            }
+        });
 
         // View Switching Logic
         const menuItems = document.querySelectorAll('.menu-item');
@@ -641,6 +779,23 @@
                 lucide.createIcons();
             });
         });
+
+        // Tree Toggle Logic for Regions
+        function toggleTree(element) {
+            const nextSibling = element.nextElementSibling;
+            if (nextSibling && (nextSibling.classList.contains('tree-children') || nextSibling.classList.contains('tree-sub-children'))) {
+                nextSibling.classList.toggle('open');
+                
+                const icon = element.querySelector('.lucide');
+                if (icon) {
+                    if (nextSibling.classList.contains('open')) {
+                        icon.style.transform = 'rotate(90deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                }
+            }
+        }
     </script>
 </body>
 

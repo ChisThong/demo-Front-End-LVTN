@@ -90,6 +90,16 @@
                     </div>
                 </div>
 
+                <!-- Revenue Chart -->
+                <div class="chart-section" style="background: white; border-radius: 20px; padding: 25px; margin-bottom: 30px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+                    <div class="card-header" style="margin-bottom: 20px;">
+                        <h2>Báo cáo doanh thu & Tăng trưởng</h2>
+                    </div>
+                    <div style="position: relative; height: 400px; width: 100%;">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
                 <!-- Recent Orders -->
                 <div class="recent-orders">
                     <div class="card-header">
@@ -141,8 +151,90 @@
         </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         lucide.createIcons();
+
+        // Initialize Revenue Chart (Combo Bar & Line)
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7'],
+                datasets: [
+                    {
+                        type: 'line',
+                        label: 'Tốc độ tăng trưởng (%)',
+                        data: [12, 2.5, 4.8, 2.7, 4.1, 0.3, -4.5],
+                        borderColor: 'red',
+                        backgroundColor: 'red',
+                        borderWidth: 2,
+                        yAxisID: 'y1',
+                        tension: 0, // straight lines like the image
+                        pointBackgroundColor: 'red',
+                        pointBorderColor: 'red',
+                        pointRadius: 3
+                    },
+                    {
+                        type: 'bar',
+                        label: 'Doanh thu (Triệu VNĐ)',
+                        data: [53.5, 212.6, 3132, 4968.4, 5759.1, 5123.3, 5040.1],
+                        backgroundColor: '#92D050', // light green like image
+                        borderColor: '#000000',
+                        borderWidth: 1,
+                        yAxisID: 'y',
+                        barPercentage: 0.5
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Triệu VNĐ',
+                            font: { weight: 'bold' }
+                        },
+                        min: 0,
+                        max: 7000
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: '%',
+                            font: { weight: 'bold' }
+                        },
+                        grid: {
+                            drawOnChartArea: false // only draw grid lines for one axis
+                        },
+                        min: -6,
+                        max: 14
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: false,
+                            boxWidth: 20
+                        }
+                    }
+                }
+            }
+        });
     </script>
 </body>
 </html>
