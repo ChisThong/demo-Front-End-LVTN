@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu chuyện sản vật | NamBộ Specialties</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="province-story.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="story-detail-page">
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <span class="logo-icon">🌴</span>
+                <span class="logo-text">NamBộ<span>Specialties</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Trang chủ</a>
+                <a href="about.html">Giới thiệu</a>
+                <a href="specialties.html">Đặc sản</a>
+                <a href="map.html">Bản đồ đặc sản</a>
+                <a href="intro.html" class="active">Câu chuyện sản vật</a>
+            </div>
+            <div class="nav-actions">
+                <button class="search-btn"><i data-lucide="search"></i></button>
+                <button class="cart-btn" onclick="window.location.href='index.html#cart'">
+                    <i data-lucide="shopping-cart"></i>
+                </button>
+                <button class="login-btn" onclick="window.location.href='login.html'">Đăng nhập</button>
+                <button class="seller-btn" onclick="window.location.href='shop/dashboard.html'">Kênh người bán</button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="story-container">
+        <!-- Content will be injected by JS -->
+        <div style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+            <p>Đang kể lại câu chuyện về vùng đất...</p>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">🌴</span>
+                    <span class="logo-text">NamBộ<span>Specialties</span></span>
+                </div>
+                <p>Nâng tầm giá trị đặc sản Việt, hỗ trợ chuyển đổi số cho hộ kinh doanh địa phương.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NamBộ Specialties. Thiết kế bởi Antigravity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const provinceData = {
+            'dongthap': {
+                name: 'Đồng Tháp',
+                heroTitle: 'Đất Sen Hồng',
+                heroDesc: 'Màu đỏ của nem Lai Vung, vị ngọt thanh của hạt sen, cùng tinh thần mộc mạc của người dân Đồng Tháp Mười tạo nên những sản vật không thể nào quên.',
+                heroImg: 'img/image copy 14.png', // Lotus pond image
+                introTitle: 'Vùng Đất Của Những Đầm Sen',
+                introText: 'Đồng Tháp không chỉ nổi tiếng với những cánh đồng sen bát ngát mà còn là nơi lưu giữ những giá trị văn hóa sông nước độc đáo. Sự trù phú của thiên nhiên nơi đây đã ban tặng cho con người những sản vật tinh túy nhất.',
+                quote: 'Về Đồng Tháp mà xem sen nở, ăn miếng nem Lai Vung mà nhớ nghĩa tình.',
+                cite: 'Ca dao Nam Bộ',
+                specialties: [
+                    {
+                        title: 'Nem Lai Vung',
+                        desc: 'Nổi tiếng với vị chua thanh, cay nồng của tiêu và ớt, Nem Lai Vung là món quà không thể thiếu của du khách khi ghé thăm Đất Sen Hồng.',
+                        img: 'img/image copy 12.png'
+                    },
+                    {
+                        title: 'Hạt Sen Tháp Mười',
+                        desc: 'Hạt sen to, bở, vị bùi và ngọt thanh. Đây không chỉ là món ăn ngon mà còn là vị thuốc quý cho sức khỏe.',
+                        img: 'img/image copy 5.png'
+                    }
+                ]
+            },
+            'bentre': {
+                name: 'Bến Tre',
+                heroTitle: 'Linh Hồn Xứ Dừa',
+                heroDesc: 'Viên kẹo nhỏ bé gói ghém cả tình đất, tình người và sự cần mẫn của bao thế hệ nghệ nhân vùng cù lao sông nước.',
+                heroImg: 'img/image copy 14.png',
+                introTitle: 'Huyền Thoại Kẹo Mỏ Cày',
+                introText: 'Nhắc đến vùng đất chín rồng, người ta nhớ ngay đến những miệt vườn trĩu quả. Nhưng để nhắc đến một hương vị đại diện cho cả một vùng quê sông nước hiền hòa, chắc chắn không thể bỏ qua Kẹo dừa Bến Tre. Không chỉ là một món ăn vặt, viên kẹo nhỏ bé ấy gói ghém cả linh hồn của "Xứ Dừa" và sự cần mẫn của bao thế hệ nghệ nhân.',
+                quote: 'Thấy dừa thì nhớ Bến Tre, thấy người hiền hậu nhớ về quê em.',
+                cite: 'Dân ca địa phương',
+                specialties: [
+                    {
+                        title: 'Kẹo Dừa Bến Tre',
+                        desc: `
+                            <p><strong>Khởi nguồn từ vùng đất Mỏ Cày:</strong> Ra đời từ những năm 30 của thế kỷ trước, kẹo dừa vốn có tên gọi dân dã là "Kẹo Mỏ Cày". Người dân nơi đây tận dụng nguồn dừa dồi dào sẵn có, kết hợp cùng mạch nha tự ủ để nấu ra một loại kẹo ngọt ngào, thơm béo dùng để thiết đãi khách quý.</p>
+                            <p><strong>Tuyệt kỹ làm kẹo:</strong> Để có được những viên kẹo dẻo thơm, người nghệ nhân phải cực kỳ tỉ mỉ. Dừa nấu kẹo phải là dừa "hơi rám" để nước cốt có độ béo cao nhất. Mạch nha phải được nấu từ loại nếp tốt, nẩy mầm đều, tạo nên hương vị ngọt thanh béo ngậy đặc trưng.</p>
+                        `,
+                        img: 'img/image copy 14.png'
+                    },
+                    {
+                        title: 'Bánh Phồng Sơn Đốc',
+                        desc: `
+                            <p><strong>Di sản trăm năm:</strong> Làng nghề bánh phồng Sơn Đốc đã tồn tại hơn một thế kỷ. Từ mâm cúng tổ tiên giản dị, chiếc bánh dần theo chân những chuyến đò đi khắp lục tỉnh Nam Kỳ, trở thành niềm tự hào của người dân Giồng Trôm.</p>
+                            <p><strong>Nghệ thuật của sức mạnh:</strong> Công đoạn vất vả nhất là giã nếp. Những thợ trẻ khỏe vung chày giã liên tục, nhịp nhàng trong lúc rưới nước cốt dừa và đường để hòa quyện vào từng thớ bột. Bánh nướng lên nở đều, giòn tan, thơm lừng mùi nếp quyện vị dừa béo.</p>
+                        `,
+                        img: 'img/image copy.png'
+                    },
+                ]
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const provinceId = params.get('province') || 'dongthap';
+            const data = provinceData[provinceId];
+
+            if (data) {
+                renderStory(data);
+            }
+
+            lucide.createIcons();
+            initNavbarScroll();
+        });
+
+        function renderStory(data) {
+            const container = document.getElementById('story-container');
+            container.innerHTML = `
+                <section class="story-hero">
+                    <div class="story-hero-bg" style="background-image: url('${data.heroImg}')"></div>
+                    <div class="story-hero-overlay"></div>
+                    <div class="story-hero-content">
+                        <span class="province-badge">${data.name}</span>
+                        <h1>${data.heroTitle}</h1>
+                        <p>${data.heroDesc}</p>
+                        <a href="#intro" class="explore-link">Khám phá sản vật <i data-lucide="arrow-down"></i></a>
+                    </div>
+                    <div class="scroll-indicator">
+                        <span>Cuộn xuống</span>
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                </section>
+
+                <section id="intro" class="story-section story-intro">
+                    <div class="story-text">
+                        <h2>${data.introTitle}</h2>
+                        <p>${data.introText}</p>
+                        <p>Chúng tôi mời bạn cùng đi sâu vào những câu chuyện nhỏ đằng sau mỗi sản vật, để hiểu thêm về đôi bàn tay và khối óc của những người nông dân Nam Bộ.</p>
+                    </div>
+                    <div class="story-visual">
+                        <img src="${data.heroImg}" alt="${data.name}">
+                    </div>
+                </section>
+
+                <section class="story-section story-specialties">
+                    <div class="section-header" style="text-align: center; margin-bottom: 5rem;">
+                        <h2>Tinh Hoa Sản Vật</h2>
+                        <p>Những niềm tự hào được kết tinh từ đất và người ${data.name}</p>
+                    </div>
+                    
+                    <div class="specialty-stories">
+                        ${data.specialties.map(s => `
+                            <div class="specialty-story-card cinematic-split">
+                                <div class="s-visual-box">
+                                    <img src="${s.img}" alt="${s.title}">
+                                </div>
+                                <div class="s-content-box">
+                                    <h3>${s.title}</h3>
+                                    <div class="s-description">${s.desc}</div>
+                                    <button class="btn-shop-outline" onclick="window.location.href='specialties.html'">
+                                        Xem sản phẩm
+                                        <i data-lucide="arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>
+
+                <section class="cultural-highlight">
+                    <i data-lucide="quote" size="48" style="margin-bottom: 2rem; color: var(--accent); opacity: 0.5;"></i>
+                    <blockquote>"${data.quote}"</blockquote>
+                    <cite>— ${data.cite}</cite>
+                </section>
+
+                <section class="story-section" style="text-align: center;">
+                    <h2>Bạn có muốn trải nghiệm thực tế?</h2>
+                    <p style="margin-bottom: 3rem; color: var(--text-muted);">Khám phá thêm nhiều sản vật khác từ ${data.name} tại gian hàng của chúng tôi.</p>
+                    <button class="btn-primary" onclick="window.location.href='specialties.html'">Ghé thăm gian hàng</button>
+                </section>
+            `;
+            lucide.createIcons();
+        }
+
+        function initNavbarScroll() {
+            const nav = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) nav.classList.add('scrolled');
+                else nav.classList.remove('scrolled');
+            });
+        }
+    </script>
+</body>
+
+</html>

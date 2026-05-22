@@ -30,12 +30,12 @@
             </div>
             <div class="nav-actions">
                 <button class="search-btn" id="searchBtn"><i data-lucide="search"></i></button>
-                <button class="cart-btn" id="cartBtn">
+                <button class="cart-btn" id="cartBtn" onclick="window.location.href='cart.html'">
                     <i data-lucide="shopping-cart"></i>
                     <span class="cart-count">0</span>
                 </button>
-                <button class="login-btn" id="loginBtn">Đăng nhập</button>
-                <button class="seller-btn" id="sellerBtn">Kênh người bán</button>
+                <button class="login-btn" onclick="window.location.href='login.html'">Đăng nhập</button>
+                <button class="seller-btn" id="sellerBtn" onclick="window.location.href='shop/dashboard.html'">Kênh người bán</button>
             </div>
         </div>
     </nav>
@@ -62,36 +62,55 @@
                 <p>Tìm kiếm đặc sản theo từng tỉnh thành Miền Nam</p>
             </div>
             <div class="region-grid">
+                <!-- Tiền Giang -->
                 <div class="region-card" data-region="tiengiang">
-                    <div class="region-img"
-                        style="background-image: url('https://static.mservice.io/blogscontents/momo-upload-api-221028143745-638025646651875182.jpg')">
+                    <div class="region-img-wrapper">
+                        <div class="region-img" style="background-image: url('https://static.mservice.io/blogscontents/momo-upload-api-221028143745-638025646651875182.jpg')"></div>
+                        <div class="region-img" style="background-image: url('img/image\ copy\ 13.png')"></div>
+                        <div class="region-img" style="background-image: url('img/image copy 6.png')"></div>
+                        <div class="region-img" style="background-image: url('img/image.png')"></div>
                     </div>
                     <div class="region-info">
                         <h3>Tiền Giang</h3>
                         <p>Vương quốc trái cây</p>
                     </div>
                 </div>
+
+                <!-- Bến Tre -->
                 <div class="region-card" data-region="bentre">
-                    <div class="region-img"
-                        style="background-image: url('https://sinhcafe.com/images/ben-tre-night-market-2.png')">
+                    <div class="region-img-wrapper">
+                        <div class="region-img" style="background-image: url('https://sinhcafe.com/images/ben-tre-night-market-2.png')"></div>
+                        <div class="region-img" style="background-image: url('img/keodua.png')"></div>
+                        <div class="region-img" style="background-image: url('data:image/webp;base64,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')"></div>
+                        <div class="region-img" style="background-image: url('img/image copy.png')"></div>
                     </div>
                     <div class="region-info">
                         <h3>Bến Tre</h3>
                         <p>Xứ sở dừa xanh</p>
                     </div>
                 </div>
+
+                <!-- Cần Thơ -->
                 <div class="region-card" data-region="cantho">
-                    <div class="region-img"
-                        style="background-image: url('https://canthoriviu.vn/wp-content/uploads/2022/07/1d-min.jpg')">
+                    <div class="region-img-wrapper">
+                        <div class="region-img" style="background-image: url('https://canthoriviu.vn/wp-content/uploads/2022/07/1d-min.jpg')"></div>
+                        <div class="region-img" style="background-image: url('img/image copy 7.png')"></div>
+                        <div class="region-img" style="background-image: url('img/image copy 8.png')"></div>
+                        <div class="region-img" style="background-image: url('img/quadep.png')"></div>
                     </div>
                     <div class="region-info">
                         <h3>Cần Thơ</h3>
                         <p>Tây Đô gạo trắng nước trong</p>
                     </div>
                 </div>
+
+                <!-- Đồng Tháp -->
                 <div class="region-card" data-region="dongthap">
-                    <div class="region-img"
-                        style="background-image: url('https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://cdn-media.sforum.vn/storage/app/media/thanhhuyen/%E1%BA%A3nh%20%C4%91%E1%BA%B9p%20%C4%91%E1%BB%93ng%20th%C3%A1p/1/anh-dep-dong-thap-9.jpg')">
+                    <div class="region-img-wrapper">
+                        <div class="region-img" style="background-image: url('https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://cdn-media.sforum.vn/storage/app/media/thanhhuyen/%E1%BA%A3nh%20%C4%91%E1%BA%B9p%20%C4%91%E1%BB%93ng%20th%C3%A1p/1/anh-dep-dong-thap-9.jpg')"></div>
+                        <div class="region-img" style="background-image: url('img/image\ copy\ 12.png')"></div>
+                        <div class="region-img" style="background-image: url('img/image copy 5.png')"></div>
+                        <div class="region-img" style="background-image: url('img/image copy 2.png')"></div>
                     </div>
                     <div class="region-info">
                         <h3>Đồng Tháp</h3>

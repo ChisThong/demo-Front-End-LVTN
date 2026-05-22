@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bản Đồ Đặc Sản | NamBộ Specialties</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;850&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" />
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <style>
         .marketplace-map-page {
             padding-top: 0;
@@ -16,8 +19,8 @@
         .map-hero-marketplace {
             height: 100vh;
             width: 100%;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('img/image\ copy\ 6.png') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('img/image\ copy\ 6.png') center/cover no-repeat;
             background-color: var(--text-dark);
             display: flex;
             align-items: center;
@@ -159,7 +162,7 @@
             padding: 1.2rem 1.5rem;
             border-radius: 16px;
             border: 1px solid #eee;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
             font-size: 1rem;
             outline: none;
             background: white;
@@ -187,48 +190,291 @@
         }
 
         #specialty-map {
-            height: 600px;
+            height: 850px;
             max-width: 1200px;
             margin: 0 auto 6rem;
             border-radius: 30px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
             border: 8px solid white;
             width: calc(100% - 40px);
             z-index: 1;
+            position: relative;
+            overflow: hidden;
         }
 
-        .map-stats-bar {
+        .map-overlay-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .map-ctrl-btn {
+            background: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .map-ctrl-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* --- Original Red Dots --- */
+        .custom-marker {
+            width: 14px;
+            height: 14px;
+            background: var(--primary);
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(163, 67, 45, 0.4);
+            transition: all 0.3s ease;
+            z-index: 50;
+        }
+
+        .custom-marker:hover {
+            transform: scale(1.4);
+            background: var(--secondary);
+        }
+
+        .marker-active {
+            transform: scale(1.4);
+            background: var(--secondary);
+            box-shadow: 0 0 20px var(--secondary);
+        }
+
+        /* --- Specialty Visual Markers (District) --- */
+        .specialty-marker {
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 100;
+        }
+
+        .marker-pin-container {
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 50%;
+            padding: 2px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            border: 1.5px solid var(--secondary);
+            animation: floatingMarker 3s ease-in-out infinite;
+        }
+
+        .marker-pin-container::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid var(--secondary);
+        }
+
+        .marker-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* --- Product Popup Card --- */
+        .product-popup-card {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(150%);
+            width: 330px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px) saturate(160%);
+            border-radius: 25px;
+            padding: 18px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            z-index: 4000;
+            border: 1px solid rgba(255,255,255,0.4);
             display: flex;
             gap: 15px;
-            flex-wrap: wrap;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .stat-item {
-            background: rgba(74, 103, 65, 0.1);
-            color: var(--secondary);
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
+        .product-popup-card.active {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .popup-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 18px;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .popup-content h3 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 3px; font-weight: 800; }
+        .popup-content .location { font-size: 0.7rem; color: var(--secondary); font-weight: 700; margin-bottom: 8px; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
+        .popup-content p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 15px; }
+        
+        .popup-actions { display: flex; gap: 8px; }
+        .btn-buy { background: var(--primary); color: white; border: none; padding: 8px 18px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; font-size: 0.75rem; }
+        .btn-buy:hover { background: var(--primary-dark); transform: scale(1.05); }
+        .btn-story { background: white; color: var(--text-dark); border: 1px solid #eee; padding: 8px 12px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; font-size: 0.75rem; }
+        .btn-story:hover { background: #f8f8f8; }
+
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f0f0f0;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        @keyframes floatingMarker {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* 3D Showroom Modal */
+        #showroom-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #showroom-modal.active {
+            opacity: 1;
+        }
+
+        .showroom-container {
+            width: 90%;
+            height: 85%;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        #three-canvas {
+            width: 100%;
+            height: 100%;
+            cursor: move;
+        }
+
+        .showroom-ui {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            color: white;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .showroom-ui h2 {
+            font-size: 3rem;
+            margin: 0;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .showroom-ui p {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+
+        .close-showroom {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            transition: all 0.3s ease;
+            border: none;
+            color: var(--text-dark);
+        }
+
+        .close-showroom:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: var(--primary);
+            color: white;
+        }
+
+        .showroom-instruction {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.5;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .specialty-label-3d {
+            position: absolute;
+            pointer-events: none;
+            color: white;
+            padding: 8px 16px;
+            background: rgba(163, 67, 45, 0.8);
+            border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: 700;
-        }
-
-        @media (max-width: 768px) {
-            .filter-section-marketplace {
-                padding: 1.5rem;
-                margin-top: -40px;
-            }
-            .search-container-map {
-                flex-direction: column;
-            }
-            .search-container-map button {
-                padding: 1.2rem;
-            }
-            #specialty-map {
-                height: 400px;
-            }
+            white-space: nowrap;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: none;
         }
     </style>
 </head>
+
 <body>
     <nav id="navbar">
         <div class="nav-container">
@@ -245,11 +491,11 @@
             </div>
             <div class="nav-actions">
                 <button class="search-btn"><i data-lucide="search"></i></button>
-                <button class="cart-btn" onclick="window.location.href='index.html#cart'">
+                <button class="cart-btn" onclick="window.location.href='cart.html'">
                     <i data-lucide="shopping-cart"></i>
                 </button>
-                <button class="login-btn">Đăng nhập</button>
-                <button class="seller-btn" onclick="window.location.href='dashboard.html'">Kênh người bán</button>
+                <button class="login-btn" onclick="window.location.href='login.html'">Đăng nhập</button>
+                <button class="seller-btn" onclick="window.location.href='shop/dashboard.html'">Kênh người bán</button>
             </div>
         </div>
     </nav>
@@ -258,8 +504,11 @@
         <section class="map-hero-marketplace">
             <div class="hero-content">
                 <h1 class="fade-in">Bản Đồ <span>Đặc Sản</span></h1>
-                <p class="fade-in-delay">Hành trình khám phá tinh hoa ẩm thực và sản vật trù phú từ vùng đất chín rồng.</p>
-                <button class="btn-primary" onclick="document.getElementById('map-core').scrollIntoView({behavior: 'smooth'})">Bắt đầu khám phá</button>
+                <p class="fade-in-delay">Hành trình khám phá tinh hoa ẩm thực và sản vật trù phú từ vùng đất chín rồng.
+                </p>
+                <button class="btn-primary"
+                    onclick="document.getElementById('map-core').scrollIntoView({behavior: 'smooth'})">Bắt đầu khám
+                    phá</button>
             </div>
         </section>
 
@@ -272,7 +521,6 @@
                     <div class="map-stats-bar">
                         <span class="stat-item">21 Tỉnh thành</span>
                         <span class="stat-item">1.240 Sản phẩm</span>
-                        <span class="stat-item">15 Làng nghề</span>
                     </div>
                 </div>
 
@@ -289,14 +537,16 @@
                     </div>
                     <div>
                         <span class="filter-label">Khu vực / Tỉnh thành</span>
-                        <select class="province-select">
-                            <option value="all">Toàn miền Nam</option>
-                            <option value="tiengiang">Tiền Giang</option>
-                            <option value="bentre">Bến Tre</option>
-                            <option value="cantho">Cần Thơ</option>
-                            <option value="angiang">An Giang</option>
-                            <option value="camau">Cà Mau</option>
-                            <option value="dongthap">Đồng Tháp</option>
+                        <select class="province-select" id="provinceSelect">
+                            <option value="all">Toàn miền Nam (8 tỉnh)</option>
+                            <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                            <option value="Tây Ninh">Tây Ninh</option>
+                            <option value="Đồng Nai">Đồng Nai</option>
+                            <option value="Đồng Tháp">Đồng Tháp</option>
+                            <option value="Vĩnh Long">Vĩnh Long</option>
+                            <option value="An Giang">An Giang</option>
+                            <option value="TP. Cần Thơ">TP. Cần Thơ</option>
+                            <option value="Cà Mau">Cà Mau</option>
                         </select>
                     </div>
                     <div>
@@ -315,66 +565,305 @@
                 <button>Tìm kiếm</button>
             </div>
 
-            <div id="specialty-map"></div>
+            <div id="specialty-map">
+                <div class="map-overlay-controls">
+                    <button class="map-ctrl-btn" title="Góc nhìn 2D" onclick="resetView()"><i
+                            data-lucide="layers"></i></button>
+                    <button class="map-ctrl-btn" title="Góc nhìn 3D" onclick="enable3D()"><i
+                            data-lucide="box"></i></button>
+                    <button class="map-ctrl-btn" title="Xoay" onclick="toggleRotation()"><i
+                            data-lucide="rotate-cw"></i></button>
+                </div>
+            </div>
         </section>
+
+        <!-- Product Popup Card -->
+        <div id="product-popup" class="product-popup-card">
+            <button class="close-popup" onclick="closeProductPopup()"><i data-lucide="x" size="16"></i></button>
+            <img src="" id="popup-img" class="popup-img" alt="Product">
+            <div class="popup-content">
+                <span id="popup-location" class="location">Vị trí</span>
+                <h3 id="popup-title">Tên sản phẩm</h3>
+                <p id="popup-desc">Mô tả ngắn gọn về câu chuyện sản phẩm...</p>
+                <div class="popup-actions">
+                    <button class="btn-buy" onclick="alert('Đã thêm vào giỏ hàng!')">MUA NGAY</button>
+                    <button class="btn-story" onclick="window.location.href='intro.html'">CÂU CHUYỆN</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3D Showroom Modal -->
+        <div id="showroom-modal">
+            <div class="showroom-container">
+                <div class="showroom-ui">
+                    <h2 id="showroom-title">Mini Showroom</h2>
+                    <p id="showroom-province">Tỉnh thành</p>
+                </div>
+                <button class="close-showroom" onclick="closeShowroom()">
+                    <i data-lucide="x"></i>
+                </button>
+                <div id="three-canvas"></div>
+                <div class="showroom-instruction">Kéo để xoay • Cuộn để phóng to</div>
+            </div>
+        </div>
     </main>
 
     <footer id="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="logo">
-                    <span class="logo-icon">🌴</span>
-                    <span class="logo-text">NamBộ<span>Specialties</span></span>
-                </div>
-                <p>Nâng tầm giá trị đặc sản Việt, hỗ trợ chuyển đổi số cho hộ kinh doanh địa phương.</p>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 NamBộ Specialties. Thiết kế bởi Antigravity.</p>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 NamBộ Specialties. Thiết kế bởi Antigravity.</p>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
     <script src="main.js"></script>
     <script>
         lucide.createIcons();
 
-        // Initialize Map focused on Southern Vietnam
-        const map = L.map('specialty-map').setView([10.2, 106.3], 9);
+        // =========================
+        // MAP
+        // =========================
+        const map = new maplibregl.Map({
+            container: 'specialty-map',
+            style: 'https://tiles.openfreemap.org/styles/liberty',
+            center: [106.3, 10.2],
+            zoom: 7,
+            pitch: 0,
+            bearing: 0,
+            antialias: true
+        });
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
+        let isMapRotating = false;
+        let mapRotationRequest;
 
-        // Specialty Data
+        // =========================
+        // ORIGINAL DATA (Full 8 Provinces)
+        // =========================
         const specialties = [
-            { lat: 10.36, lng: 106.36, title: "Kẹo dừa Bến Tre", category: "Bánh kẹo", province: "Bến Tre" },
-            { lat: 10.35, lng: 106.08, title: "Xoài cát Hòa Lộc", category: "Trái cây", province: "Tiền Giang" },
-            { lat: 10.03, lng: 105.78, title: "Bánh tét lá cẩm", category: "Bánh kẹo", province: "Cần Thơ" },
-            { lat: 10.70, lng: 105.12, title: "Mắm Châu Đốc", category: "Đồ khô", province: "An Giang" },
-            { lat: 9.18, lng: 104.91, title: "Cua Cà Mau", category: "Thủy hải sản", province: "Cà Mau" },
-            { lat: 10.28, lng: 105.65, title: "Nem Lai Vung", category: "Đồ khô", province: "Đồng Tháp" }
+            {
+                id: 1, lat: 10.776, lng: 106.701, province: "TP. Hồ Chí Minh", category: "Ẩm thực",
+                items: [
+                    { title: "Cơm Tấm Sài Gòn", img: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=500&q=80" },
+                    { title: "Bánh Mì Sài Gòn", img: "https://images.unsplash.com/photo-1601050638917-3f80bc0ec8ad?auto=format&fit=crop&w=500&q=80" },
+                    { title: "Hủ Tiếu Gõ", img: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=500&q=80" }
+                ]
+            },
+            {
+                id: 3, lat: 11.312, lng: 106.098, province: "Tây Ninh", category: "Đồ khô",
+                items: [
+                    { title: "Bánh Tráng Tây Ninh", img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=80" },
+                    { title: "Muối Tôm Tây Ninh", img: "https://images.unsplash.com/photo-1532336414038-cf19250c5757?auto=format&fit=crop&w=500&q=80" }
+                ]
+            },
+            {
+                id: 4, lat: 10.457, lng: 105.632, province: "Đồng Tháp", category: "Trái cây",
+                items: [
+                    { title: "Nem Lai Vung", img: "img/image copy 4.png" },
+                    { title: "Xoài Cao Lãnh", img: "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=500&q=80" }
+                ]
+            },
+            {
+                id: 5, lat: 9.176, lng: 105.152, province: "Cà Mau", category: "Hải sản",
+                items: [{ title: "Cua Cà Mau", img: "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=500&q=80" }]
+            },
+            {
+                id: 6, lat: 10.957, lng: 106.842, province: "Đồng Nai", category: "Trái cây",
+                items: [{ title: "Bưởi Tân Triều", img: "https://images.unsplash.com/photo-1557800636-894a64c1696f?auto=format&fit=crop&w=500&q=80" }]
+            },
+            {
+                id: 7, lat: 10.252, lng: 105.972, province: "Vĩnh Long", category: "Trái cây",
+                items: [{ title: "Cam Sành", img: "https://images.unsplash.com/photo-1611080626919-7cf5a9caab53?auto=format&fit=crop&w=500&q=80" }]
+            },
+            {
+                id: 8, lat: 10.370, lng: 105.432, province: "An Giang", category: "Đặc sản",
+                items: [{ title: "Mắm Châu Đốc", img: "https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&w=500&q=80" }]
+            },
+            {
+                id: 9, lat: 10.036, lng: 105.787, province: "TP. Cần Thơ", category: "Ẩm thực",
+                items: [{ title: "Bánh Tét Lá Cẩm", img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=500&q=80" }]
+            }
         ];
 
-        specialties.forEach(s => {
-            const marker = L.circleMarker([s.lat, s.lng], {
-                radius: 12,
-                fillColor: "#A3432D",
-                color: "#fff",
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.9
-            }).addTo(map);
-            
-            marker.bindPopup(`
-                <div style="font-family: 'Outfit', sans-serif;">
-                    <strong style="color: var(--primary); font-size: 1.1rem;">${s.title}</strong><br>
-                    <span style="color: var(--secondary); font-weight: 600;">${s.category}</span><br>
-                    <small>${s.province}</small><br>
-                    <button style="margin-top: 8px; padding: 4px 10px; background: var(--text-dark); color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="window.location.href='specialties.html'">Xem chi tiết</button>
-                </div>
-            `);
+        // ADDED: Specialty Markers Data (Specific Locations)
+        const specialtyPins = [
+            { lat: 10.2833, lng: 106.3358, title: "Kẹo Dừa Bến Tre", location: "Huyện Châu Thành, Bến Tre", thumb: "img/image.png", desc: "Tinh hoa dừa Việt, ngọt thanh đậm đà xứ sở Ba Dải Cù Lao." },
+            { lat: 10.407, lng: 105.532, title: "Nem Lai Vung", location: "Huyện Lai Vung, Đồng Tháp", thumb: "img/image copy 4.png", desc: "Vị chua ngọt đặc trưng, gói trọn hương vị đất sen hồng." },
+            { lat: 9.120, lng: 105.180, title: "Cua Cà Mau", location: "Năm Căn, Cà Mau", thumb: "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=200&q=80", desc: "Thịt chắc, gạch son béo ngậy, danh tiếng bậc nhất vùng Đất Mũi." },
+            { lat: 10.704, lng: 105.125, title: "Mắm Châu Đốc", location: "Châu Đốc, An Giang", thumb: "https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&w=200&q=80", desc: "Vương quốc mắm với hương vị đậm đà, kết tinh từ mùa nước nổi." },
+            { lat: 11.280, lng: 106.130, title: "Bánh Tráng Phơi Sương", location: "Trảng Bàng, Tây Ninh", thumb: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=200&q=80", desc: "Dẻo dai, đậm vị mồ hôi công sức của người thợ Tây Ninh." },
+            { lat: 10.050, lng: 105.750, title: "Bánh Tét Lá Cẩm", location: "Ninh Kiều, TP. Cần Thơ", thumb: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=200&q=80", desc: "Màu tím lá cẩm đẹp mắt, nhân đậu xanh thịt mỡ béo ngậy truyền thống." },
+            { lat: 10.210, lng: 105.940, title: "Cam Sành", location: "Tam Bình, Vĩnh Long", thumb: "https://images.unsplash.com/photo-1611080626919-7cf5a9caab53?auto=format&fit=crop&w=200&q=80", desc: "Ngọt thanh, mọng nước, thức quà thanh mát của vùng châu thổ." }
+        ];
+
+        let markers = [];
+
+        map.on('load', () => {
+            // Render Province Dots (Red)
+            specialties.forEach(s => {
+                const el = document.createElement('div');
+                el.className = 'custom-marker';
+                const marker = new maplibregl.Marker({ element: el, anchor: 'center' })
+                    .setLngLat([s.lng, s.lat])
+                    .addTo(map);
+
+                el.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    enter3DMode(s);
+                });
+                markers.push({ data: s, marker, el });
+            });
+
+            // Render Specialty Pins (Circular Images)
+            specialtyPins.forEach(p => {
+                const pin = document.createElement('div');
+                pin.className = 'specialty-marker';
+                pin.innerHTML = `
+                    <div class="marker-pin-container">
+                        <img src="${p.thumb}" class="marker-image">
+                    </div>
+                `;
+                new maplibregl.Marker({ element: pin, anchor: 'center' })
+                    .setLngLat([p.lng, p.lat])
+                    .addTo(map);
+
+                pin.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openProductPopup(p);
+                });
+            });
         });
+
+        // =========================
+        // ACTIONS
+        // =========================
+        function openProductPopup(data) {
+            document.getElementById('popup-img').src = data.thumb;
+            document.getElementById('popup-title').textContent = data.title;
+            document.getElementById('popup-location').textContent = data.location;
+            document.getElementById('popup-desc').textContent = data.desc;
+            document.getElementById('product-popup').classList.add('active');
+            map.flyTo({ center: [data.lng, data.lat], zoom: 13, pitch: 45, duration: 1200 });
+        }
+
+        function closeProductPopup() {
+            document.getElementById('product-popup').classList.remove('active');
+        }
+
+        function enter3DMode(province) {
+            markers.forEach(m => m.el.classList.remove('marker-active'));
+            const active = markers.find(m => m.data.id === province.id);
+            if (active) active.el.classList.add('marker-active');
+
+            map.flyTo({ center: [province.lng, province.lat], zoom: 12, pitch: 60, bearing: 0, duration: 2000 });
+            setTimeout(() => { startMapRotation(); openShowroom(province); }, 2100);
+        }
+
+        function startMapRotation() {
+            if (isMapRotating) return;
+            isMapRotating = true;
+            const rotate = () => { if (!isMapRotating) return; map.setBearing(map.getBearing() + 0.1); mapRotationRequest = requestAnimationFrame(rotate); };
+            mapRotationRequest = requestAnimationFrame(rotate);
+        }
+
+        function stopMapRotation() {
+            isMapRotating = false;
+            if (mapRotationRequest) cancelAnimationFrame(mapRotationRequest);
+        }
+
+        // =========================
+        // THREE JS (Restored)
+        // =========================
+        let scene, camera, renderer, controls, showroomGroup, animationFrame;
+
+        function initThreeJS() {
+            const container = document.getElementById('three-canvas');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 5, 12);
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.autoRotate = true;
+            scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(5, 10, 7);
+            scene.add(dirLight);
+            showroomGroup = new THREE.Group();
+            scene.add(showroomGroup);
+            animate();
+        }
+
+        function populateShowroom(province) {
+            while (showroomGroup.children.length > 0) showroomGroup.remove(showroomGroup.children[0]);
+            document.querySelectorAll('.specialty-label-3d').forEach(l => l.remove());
+            const loader = new THREE.TextureLoader();
+            loader.setCrossOrigin('anonymous');
+
+            province.items.forEach((item, index) => {
+                const geometry = new THREE.SphereGeometry(2, 32, 32);
+                const material = new THREE.MeshPhongMaterial({ color: 0xffffff });
+                const mesh = new THREE.Mesh(geometry, material);
+                const angle = (index / province.items.length) * Math.PI * 2;
+                mesh.position.set(Math.cos(angle) * 6.5, 0, Math.sin(angle) * 6.5);
+                
+                const label = document.createElement('div');
+                label.className = 'specialty-label-3d';
+                label.textContent = item.title;
+                document.querySelector('.showroom-container').appendChild(label);
+                mesh.userData = { label: label };
+                showroomGroup.add(mesh);
+
+                loader.load(item.img, (tex) => { mesh.material.map = tex; mesh.material.needsUpdate = true; });
+            });
+        }
+
+        function animate() {
+            animationFrame = requestAnimationFrame(animate);
+            if (controls) controls.update();
+            if (showroomGroup) {
+                showroomGroup.children.forEach((child, i) => { 
+                    child.position.y = Math.sin(Date.now() * 0.001 + i) * 0.2; 
+                    if (child.userData.label) {
+                        const vector = new THREE.Vector3();
+                        child.getWorldPosition(vector);
+                        vector.project(camera);
+                        const container = document.querySelector('.showroom-container');
+                        const x = (vector.x * (container.clientWidth / 2)) + (container.clientWidth / 2);
+                        const y = -(vector.y * (container.clientHeight / 2)) + (container.clientHeight / 2);
+                        if (vector.z < 1) {
+                            child.userData.label.style.display = 'block';
+                            child.userData.label.style.left = x + 'px';
+                            child.userData.label.style.top = (y - 120) + 'px';
+                        } else { child.userData.label.style.display = 'none'; }
+                    }
+                });
+            }
+            if (renderer) renderer.render(scene, camera);
+        }
+
+        function openShowroom(province) {
+            document.getElementById('showroom-title').textContent = province.province;
+            document.getElementById('showroom-province').textContent = province.category;
+            const modal = document.getElementById('showroom-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => { 
+                modal.classList.add('active'); 
+                if (!renderer) initThreeJS();
+                populateShowroom(province); 
+            }, 50);
+        }
+
+        function closeShowroom() {
+            document.getElementById('showroom-modal').classList.remove('active');
+            setTimeout(() => { document.getElementById('showroom-modal').style.display = 'none'; }, 400);
+            stopMapRotation();
+        }
+
+        function enable3D() { map.easeTo({ pitch: 60, duration: 1000 }); startMapRotation(); }
+        function resetView() { stopMapRotation(); map.flyTo({ center: [106.3, 10.2], zoom: 7, pitch: 0, bearing: 0, duration: 1500 }); markers.forEach(m => m.el.classList.remove('marker-active')); }
     </script>
 </body>
+
 </html>

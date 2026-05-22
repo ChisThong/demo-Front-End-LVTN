@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập | NamBộ Specialties</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="auth.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="login-page">
+    <div class="auth-wrapper">
+        <!-- Left Side: Immersive Image (60%) -->
+        <div class="auth-image-side">
+            <div class="image-content">
+                <span class="badge">Premium Choice</span>
+                <h1>Hương vị<br>Phù sa</h1>
+                <p>Khám phá bộ sưu tập sản vật tinh túy từ 8 tỉnh miền Tây Nam Bộ, được tuyển chọn kỹ lưỡng để mang đến hương vị nguyên bản nhất.</p>
+            </div>
+        </div>
+
+        <!-- Right Side: Login Form (40%) -->
+        <div class="auth-form-side">
+            <a href="index.html" class="back-home">
+                <i data-lucide="arrow-left"></i>
+                Quay lại trang chủ
+            </a>
+
+            <div class="auth-container">
+                <header class="auth-header">
+                    <a href="index.html" class="auth-logo">
+                        <div class="logo-icon">🌴</div>
+                        <div class="logo-text">NamBộ<span>Specialties</span></div>
+                    </a>
+                    <h2>Chào mừng trở lại!</h2>
+                    <p>Vui lòng đăng nhập để tiếp tục hành trình khám phá.</p>
+                </header>
+
+                <form class="auth-form" onsubmit="event.preventDefault(); window.location.href='index.html'">
+                    <div class="form-group">
+                        <label>Email của bạn</label>
+                        <div class="input-wrapper">
+                            <input type="email" placeholder="example@email.com" required>
+                            <i data-lucide="mail"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mật khẩu</label>
+                        <div class="input-wrapper">
+                            <input type="password" placeholder="••••••••" required>
+                            <i data-lucide="lock"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-group">
+                            <input type="checkbox">
+                            <span>Ghi nhớ đăng nhập</span>
+                        </label>
+                        <a href="#" class="forgot-pw">Quên mật khẩu?</a>
+                    </div>
+
+                    <button type="submit" class="btn-auth">Đăng nhập</button>
+
+                    <div class="social-divider">
+                        <span>Hoặc đăng nhập với</span>
+                    </div>
+
+                    <div class="social-buttons">
+                        <button type="button" class="social-btn">
+                            <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google">
+                            Google
+                        </button>
+                        <button type="button" class="social-btn">
+                            <img src="https://www.svgrepo.com/show/512120/facebook-176.svg" alt="Facebook">
+                            Facebook
+                        </button>
+                    </div>
+
+                    <footer class="auth-footer">
+                        Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
+                    </footer>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

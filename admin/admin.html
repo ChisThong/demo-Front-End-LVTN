@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Central | NamBộ Specialties</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;850&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="admin-page">
+    <!-- Navigation Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="admin-logo">
+                <span style="font-size: 1.8rem;">🌴</span>
+                <div style="display: flex; flex-direction: column;">
+                    <span style="font-size: 1.2rem; font-weight: 900; line-height: 1;">NamBộ</span>
+                    <span
+                        style="font-size: 0.8rem; color: var(--gold); font-weight: 700; letter-spacing: 1px;">CENTRAL</span>
+                </div>
+            </a>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="#dashboard" class="menu-item active">
+                <i data-lucide="layout-dashboard"></i> Dashboard hệ thống
+            </a>
+            <a href="#stores" class="menu-item">
+                <i data-lucide="store"></i> Kiểm duyệt gian hàng
+            </a>
+            <a href="#orders" class="menu-item">
+                <i data-lucide="shopping-bag"></i> Quản lý đơn hàng
+            </a>
+            <a href="#products" class="menu-item">
+                <i data-lucide="package"></i> Quản lý sản phẩm
+            </a>
+            <a href="#regions" class="menu-item">
+                <i data-lucide="map"></i> Danh mục vùng miền
+            </a>
+            <a href="#posts" class="menu-item">
+                <i data-lucide="file-text"></i> Quản lý bài viết
+            </a>
+            <a href="#reports" class="menu-item">
+                <i data-lucide="bar-chart-3"></i> Báo cáo & Thống kê
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="admin-user">
+                <img src="https://ui-avatars.com/api/?name=Admin+Vip&background=D4A373&color=fff" alt="Admin">
+                <div>
+                    <p style="font-weight: 800; font-size: 0.9rem;">Admin VIP</p>
+                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Quản trị viên tối cao</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+        <header class="admin-top-bar">
+            <div class="page-title">
+                <h1 id="view-title">Dashboard hệ thống</h1>
+                <p>Chào mừng trở lại, hôm nay hệ thống có gì mới?</p>
+            </div>
+            <div class="top-actions">
+                <button class="icon-btn" style="position: relative;">
+                    <i data-lucide="bell"></i>
+                    <span
+                        style="position: absolute; top: -5px; right: -5px; background: #EF4444; width: 15px; height: 15px; border-radius: 50%; border: 2px solid white;"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- View: Dashboard -->
+        <div id="dashboard" class="view-section active">
+            <!-- Stat Grid -->
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #E0F2FE; color: #0EA5E9;">
+                        <i data-lucide="dollar-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Tổng doanh thu</h3>
+                        <p class="value">128.4M <span class="trend up">+12%</span></p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #DCFCE7; color: #10B981;">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Người dùng mới</h3>
+                        <p class="value">1,240 <span class="trend up">+18%</span></p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #FEF3C7; color: #F59E0B;">
+                        <i data-lucide="shopping-cart"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Đơn hàng chờ</h3>
+                        <p class="value">45</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #F3E8FF; color: #A855F7;">
+                        <i data-lucide="alert-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Gian hàng chờ duyệt</h3>
+                        <p class="value">12</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Stores Table -->
+            <div class="admin-card">
+                <div class="card-header">
+                    <h2>Gian hàng mới đăng ký</h2>
+                    <button class="btn-action btn-primary" onclick="alert('Đang đi tới danh sách gian hàng...')">Xem tất
+                        cả</button>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Tên gian hàng</th>
+                            <th>Đại diện</th>
+                            <th>Vùng miền</th>
+                            <th>Ngày đăng ký</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dừa Quê Bến Tre</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>Bến Tre</td>
+                            <td>16/05/2026</td>
+                            <td><span class="badge badge-pending">Chờ duyệt</span></td>
+                            <td class="action-btns">
+                                <button class="icon-btn" title="Duyệt"><i data-lucide="check"
+                                        style="color: #10B981;"></i></button>
+                                <button class="icon-btn" title="Từ chối"><i data-lucide="x"
+                                        style="color: #EF4444;"></i></button>
+                                <button class="icon-btn" title="Chi tiết"><i data-lucide="eye"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nem Lai Vung Pro</td>
+                            <td>Trần Thị B</td>
+                            <td>Đồng Tháp</td>
+                            <td>15/05/2026</td>
+                            <td><span class="badge badge-success">Đã duyệt</span></td>
+                            <td class="action-btns">
+                                <button class="icon-btn" title="Chi tiết"><i data-lucide="eye"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Vú Sữa Lò Rèn VIP</td>
+                            <td>Lê Văn C</td>
+                            <td>Tiền Giang</td>
+                            <td>14/05/2026</td>
+                            <td><span class="badge badge-pending">Chờ duyệt</span></td>
+                            <td class="action-btns">
+                                <button class="icon-btn" title="Duyệt"><i data-lucide="check"
+                                        style="color: #10B981;"></i></button>
+                                <button class="icon-btn" title="Chi tiết"><i data-lucide="eye"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- View: Stores -->
+        <div id="stores" class="view-section">
+            <div class="admin-filters">
+                <div class="search-box">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Tìm kiếm gian hàng...">
+                </div>
+                <div class="filter-group">
+                    <button class="filter-btn active">Tất cả</button>
+                    <button class="filter-btn">Chờ duyệt</button>
+                    <button class="filter-btn">Đã duyệt</button>
+                </div>
+            </div>
+            <div class="admin-card">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Tên gian hàng</th>
+                            <th>Đại diện</th>
+                            <th>Vùng miền</th>
+                            <th>Sản phẩm</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dừa Quê Bến Tre</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>Bến Tre</td>
+                            <td>12</td>
+                            <td><span class="badge badge-pending">Chờ duyệt</span></td>
+                            <td class="action-btns">
+                                <button class="icon-btn" title="Duyệt"><i data-lucide="check"
+                                        style="color: #10B981;"></i></button>
+                                <button class="icon-btn" title="Từ chối"><i data-lucide="x"
+                                        style="color: #EF4444;"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Đặc Sản Đồng Tháp Mười</td>
+                            <td>Lê Thị C</td>
+                            <td>Đồng Tháp</td>
+                            <td>8</td>
+                            <td><span class="badge badge-success">Đã duyệt</span></td>
+                            <td class="action-btns">
+                                <button class="icon-btn"><i data-lucide="eye"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- View: Orders -->
+        <div id="orders" class="view-section">
+            <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Tổng đơn hàng</h3>
+                        <p class="value">1,248</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Đang giao</h3>
+                        <p class="value" style="color: #F59E0B;">42</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Đã hoàn thành</h3>
+                        <p class="value" style="color: #10B981;">1,180</p>
+                    </div>
+                </div>
+            </div>
+            <div class="admin-card">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Mã Đơn</th>
+                            <th>Gian hàng</th>
+                            <th>Khách hàng</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#ORD-001</td>
+                            <td>Dừa Quê Bến Tre</td>
+                            <td>Trần B</td>
+                            <td>120.000đ</td>
+                            <td><span class="badge badge-success">Hoàn thành</span></td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-002</td>
+                            <td>Nem Lai Vung Pro</td>
+                            <td>Lê C</td>
+                            <td>350.000đ</td>
+                            <td><span class="badge badge-pending">Đang giao</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- View: Products -->
+        <div id="products" class="view-section">
+            <div class="admin-filters">
+                <div class="search-box">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Tìm sản phẩm cần duyệt...">
+                </div>
+                <div class="filter-group">
+                    <button class="filter-btn active">Tất cả</button>
+                    <button class="filter-btn">Chờ duyệt</button>
+                    <button class="filter-btn">Đã duyệt</button>
+                </div>
+            </div>
+            <div class="admin-card">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Gian hàng</th>
+                            <th>Danh mục</th>
+                            <th>Giá</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="img/keodua.png"
+                                        style="width: 40px; height: 40px; object-fit: cover; border-radius: 8px;">
+                                    Kẹo Dừa Bến Tre
+                                </div>
+                            </td>
+                            <td>Dừa Quê Bến Tre</td>
+                            <td>Bánh kẹo</td>
+                            <td>45.000đ</td>
+                            <td><span class="badge badge-pending">Chờ duyệt</span></td>
+                            <td class="action-btns">
+                                <button class="icon-btn" title="Duyệt"><i data-lucide="check"
+                                        style="color: #10B981;"></i></button>
+                                <button class="icon-btn" title="Từ chối"><i data-lucide="x"
+                                        style="color: #EF4444;"></i></button>
+                                <button class="icon-btn" title="Chi tiết"><i data-lucide="eye"></i></button>
+                                <button class="icon-btn" title="Xóa"><i data-lucide="trash-2"
+                                        style="color: #EF4444;"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="img/image copy 12.png"
+                                        style="width: 40px; height: 40px; object-fit: cover; border-radius: 8px;">
+                                    Nem Lai Vung
+                                </div>
+                            </td>
+                            <td>Nem Lai Vung Pro</td>
+                            <td>Thực phẩm</td>
+                            <td>65.000đ</td>
+                            <td><span class="badge badge-success">Đã duyệt</span></td>
+                            <td class="action-btns">
+                                <button class="icon-btn" title="Chi tiết"><i data-lucide="eye"></i></button>
+                                <button class="icon-btn" title="Xóa"><i data-lucide="trash-2"
+                                        style="color: #EF4444;"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- View: Regions (Advanced Map Config) -->
+        <div id="regions" class="view-section">
+            <div class="admin-filters">
+                <div class="search-box">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Tìm kiếm điểm ghim (đặc sản)...">
+                </div>
+                <button class="btn-action btn-primary"><i data-lucide="map-pin"
+                        style="width: 16px; vertical-align: text-bottom;"></i> Thêm điểm ghim mới</button>
+            </div>
+            <div class="map-config-layout">
+                <div class="province-list">
+                    <div class="province-item active">Bến Tre <i data-lucide="chevron-right" style="width:16px;"></i>
+                    </div>
+                    <div class="province-item">Đồng Tháp <i data-lucide="chevron-right" style="width:16px;"></i></div>
+                    <div class="province-item">Tiền Giang <i data-lucide="chevron-right" style="width:16px;"></i></div>
+                    <div class="province-item">Cần Thơ <i data-lucide="chevron-right" style="width:16px;"></i></div>
+                    <div class="province-item">Long An <i data-lucide="chevron-right" style="width:16px;"></i></div>
+                    <div class="province-item">Kiên Giang <i data-lucide="chevron-right" style="width:16px;"></i></div>
+                    <div class="province-item">An Giang <i data-lucide="chevron-right" style="width:16px;"></i></div>
+                    <div class="province-item">Cà Mau <i data-lucide="chevron-right" style="width:16px;"></i></div>
+                </div>
+                <div class="map-pins-area">
+                    <div class="admin-card" style="margin-bottom: 0;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Đặc sản</th>
+                                    <th>Tọa độ (Lat, Lng)</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <img src="img/keodua.png"
+                                                style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                                            <div style="font-weight: 600;">Kẹo Dừa</div>
+                                        </div>
+                                    </td>
+                                    <td style="font-family: monospace; font-size: 0.85rem; color: var(--text-muted);">
+                                        10.2435, 106.3752</td>
+                                    <td class="action-btns">
+                                        <button class="icon-btn" title="Chỉnh sửa"><i data-lucide="edit"></i></button>
+                                        <button class="icon-btn" title="Xóa"><i data-lucide="trash-2"
+                                                style="color: red;"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <img src="img/image copy.png"
+                                                style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                                            <div style="font-weight: 600;">Bánh Phồng</div>
+                                        </div>
+                                    </td>
+                                    <td style="font-family: monospace; font-size: 0.85rem; color: var(--text-muted);">
+                                        10.2511, 106.3789</td>
+                                    <td class="action-btns">
+                                        <button class="icon-btn" title="Chỉnh sửa"><i data-lucide="edit"></i></button>
+                                        <button class="icon-btn" title="Xóa"><i data-lucide="trash-2"
+                                                style="color: red;"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View: Posts -->
+        <div id="posts" class="view-section">
+            <div class="admin-filters">
+                <div class="search-box">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Tìm bài viết...">
+                </div>
+                <button class="btn-action btn-primary">Viết bài mới</button>
+            </div>
+            <div class="admin-card">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Tiêu đề</th>
+                            <th>Tác giả</th>
+                            <th>Ngày đăng</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hành trình tạo ra viên kẹo dừa</td>
+                            <td>Admin VIP</td>
+                            <td>12/05/2026</td>
+                            <td><span class="badge badge-success">Đã xuất bản</span></td>
+                            <td class="action-btns">
+                                <button class="icon-btn" title="Xem bài viết"><i data-lucide="eye"></i></button>
+                                <button class="icon-btn" title="Chỉnh sửa"><i data-lucide="edit"></i></button>
+                                <button class="icon-btn" title="Xóa bài"><i data-lucide="trash-2"
+                                        style="color: #EF4444;"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Đặc sản Nam Bộ mùa nước nổi</td>
+                            <td>Content Team</td>
+                            <td>16/05/2026</td>
+                            <td><span class="badge badge-pending">Bản nháp</span></td>
+                            <td class="action-btns">
+                                <button class="icon-btn" title="Xem bài viết"><i data-lucide="eye"></i></button>
+                                <button class="icon-btn" title="Chỉnh sửa"><i data-lucide="edit"></i></button>
+                                <button class="icon-btn" title="Xóa bài"><i data-lucide="trash-2"
+                                        style="color: #EF4444;"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- View: Reports -->
+        <div id="reports" class="view-section">
+            <div class="admin-filters">
+                <h2>Tổng quan hệ thống</h2>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <select
+                        style="padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid #E5E7EB; font-family: inherit; font-weight: 600; outline: none; background: white; cursor: pointer;">
+                        <option value="all">Tất cả gian hàng</option>
+                        <option value="shop1">Dừa Quê Bến Tre</option>
+                        <option value="shop2">Nem Lai Vung Pro</option>
+                        <option value="shop3">Đặc Sản Đồng Tháp Mười</option>
+                    </select>
+                    <div class="filter-group">
+                        <button class="filter-btn active">Tháng này</button>
+                        <button class="filter-btn">Quý này</button>
+                        <button class="filter-btn">Năm nay</button>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-grid">
+                <!-- Cột trái: Biểu đồ doanh thu -->
+                <div class="chart-section">
+                    <div class="admin-card" style="height: 100%;">
+                        <div class="card-header" style="margin-bottom: 1rem;">
+                            <h3>Doanh thu theo tuần</h3>
+                            <button class="icon-btn"><i data-lucide="download"></i></button>
+                        </div>
+                        <div class="chart-mockup" style="box-shadow: none; padding: 1rem 0; height: 250px;">
+                            <div class="chart-bar" style="height: 30%;"><span>T1</span></div>
+                            <div class="chart-bar" style="height: 55%;"><span>T2</span></div>
+                            <div class="chart-bar" style="height: 45%;"><span>T3</span></div>
+                            <div class="chart-bar" style="height: 85%;"><span>T4</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cột phải: Top sản phẩm -->
+                <div class="top-ranking">
+                    <div class="admin-card" style="height: 100%;">
+                        <div class="card-header">
+                            <h3>Sản phẩm bán chạy</h3>
+                        </div>
+                        <ul class="ranking-list">
+                            <li class="ranking-item">
+                                <div class="ranking-rank">1</div>
+                                <div class="ranking-info">
+                                    <h4>Kẹo Dừa Bến Tre</h4>
+                                    <p>245 đã bán</p>
+                                </div>
+                                <div class="ranking-val">11M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="ranking-rank">2</div>
+                                <div class="ranking-info">
+                                    <h4>Tôm Khô Cà Mau</h4>
+                                    <p>180 đã bán</p>
+                                </div>
+                                <div class="ranking-val">8M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="ranking-rank">3</div>
+                                <div class="ranking-info">
+                                    <h4>Nem Lai Vung</h4>
+                                    <p>156 đã bán</p>
+                                </div>
+                                <div class="ranking-val">6M</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bảng Lịch sử doanh thu -->
+            <div class="admin-card" style="margin-top: 2rem;">
+                <div class="card-header">
+                    <h3>Lịch sử doanh thu & Đối soát</h3>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="month"
+                            style="padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid #E5E7EB; font-family: inherit; font-weight: 600; outline: none; background: white; cursor: pointer;"
+                            value="2026-05">
+                        <button class="icon-btn" title="Lọc"><i data-lucide="filter"></i></button>
+                    </div>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Kỳ đối soát</th>
+                                <th>Gian hàng</th>
+                                <th>Số đơn</th>
+                                <th>Tổng doanh thu</th>
+                                <th>Phí sàn (5%)</th>
+                                <th>Thực nhận</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 700;">Tuần 1 - T05/2026</td>
+                                <td>Dừa Quê Bến Tre</td>
+                                <td>120</td>
+                                <td>12.500.000đ</td>
+                                <td style="color: var(--text-muted);">625.000đ</td>
+                                <td style="color: var(--sidebar-active); font-weight: 800;">11.875.000đ</td>
+                                <td><span class="badge badge-success">Đã thanh toán</span></td>
+                                <td class="action-btns">
+                                    <button class="icon-btn" title="Chi tiết"><i data-lucide="eye"></i></button>
+                                    <button class="icon-btn" title="Xuất biên lai"><i
+                                            data-lucide="download"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 700;">Tuần 2 - T05/2026</td>
+                                <td>Tất cả gian hàng</td>
+                                <td>340</td>
+                                <td>45.000.000đ</td>
+                                <td style="color: var(--text-muted);">2.250.000đ</td>
+                                <td style="color: var(--sidebar-active); font-weight: 800;">42.750.000đ</td>
+                                <td><span class="badge badge-pending">Đang xử lý</span></td>
+                                <td class="action-btns">
+                                    <button class="icon-btn" title="Chi tiết"><i data-lucide="eye"></i></button>
+                                    <button class="icon-btn" title="Xuất biên lai"><i
+                                            data-lucide="download"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        // View Switching Logic
+        const menuItems = document.querySelectorAll('.menu-item');
+        const viewTitle = document.getElementById('view-title');
+        const viewSections = document.querySelectorAll('.view-section');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Update Menu active state
+                menuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                // Update Title
+                viewTitle.innerText = item.innerText.trim();
+
+                // Switch View
+                const targetId = item.getAttribute('href').substring(1);
+                viewSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                const targetView = document.getElementById(targetId);
+                if (targetView) {
+                    targetView.classList.add('active');
+                }
+
+                lucide.createIcons();
+            });
+        });
+    </script>
+</body>
+
+</html>

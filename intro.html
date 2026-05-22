@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <nav id="navbar" class="scrolled">
+    <nav id="navbar">
         <div class="nav-container">
             <div class="logo" onclick="window.location.href='index.html'">
                 <span class="logo-icon">🌴</span>
@@ -29,28 +29,68 @@
                 <button class="cart-btn" onclick="window.location.href='index.html#cart'">
                     <i data-lucide="shopping-cart"></i>
                 </button>
-                <button class="login-btn">Đăng nhập</button>
-                <button class="seller-btn" onclick="window.location.href='dashboard.html'">Kênh người bán</button>
+                <button class="login-btn" onclick="window.location.href='login.html'">Đăng nhập</button>
+                <button class="seller-btn" onclick="window.location.href='shop/dashboard.html'">Kênh người bán</button>
             </div>
         </div>
     </nav>
 
     <main class="intro-page">
-        <section class="intro-hero">
-            <div class="intro-hero-card">
-                <div class="intro-hero-content">
-                    <span class="slide-number">03</span>
-                    <h1 class="fade-in">Hương Vị Miền Nam <br>Tinh Hoa Từ Đất Mẹ</h1>
-                    <p class="fade-in-delay">Khám phá những câu chuyện đằng sau mỗi món quà quê, nơi tâm huyết của người
-                        nông dân hòa quyện cùng bản sắc vùng miền.</p>
-                    <button class="cta-btn fade-in-delay-2">Khám phá nhanh <i data-lucide="arrow-right"></i></button>
+        <section class="fullscreen-province-stories">
+            <!-- Province 1: Bến Tre -->
+            <div class="province-slide active">
+                <div class="slide-bg" style="background-image: url('img/image\ copy\ 9.png')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <span class="province-tag">Bến Tre</span>
+                    <h2>Vị Ngọt Xứ Dừa</h2>
+                    <p class="story-desc">Từ những quả dừa già rám vỏ, người thợ Bến Tre đã khéo léo tạo nên món kẹo thơm béo, đậm đà. Đó là biểu tượng của sự cần cù, chịu khó của người dân nơi đây.</p>
+                    <a href="province-story.html?province=bentre" class="explore-link">Khám phá sản vật <i data-lucide="arrow-right"></i></a>
                 </div>
-                <div class="hero-pagination">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
+            </div>
+
+            <!-- Province 2: Đồng Tháp -->
+            <div class="province-slide">
+                <div class="slide-bg" style="background-image: url('img/image\ copy\ 10.png')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <span class="province-tag">Đồng Tháp</span>
+                    <h2>Đất Sen Hồng</h2>
+                    <p class="story-desc">Màu đỏ của nem Lai Vung, vị ngọt thanh của hạt sen, cùng tinh thần mộc mạc của người dân Đồng Tháp Mười tạo nên những sản vật không thể nào quên.</p>
+                    <a href="province-story.html?province=dongthap" class="explore-link">Khám phá sản vật <i data-lucide="arrow-right"></i></a>
                 </div>
+            </div>
+
+            <!-- Province 3: An Giang -->
+            <div class="province-slide">
+                <div class="slide-bg" style="background-image: url('img/image copy 4.png')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <span class="province-tag">An Giang</span>
+                    <h2>Hương Vị Thất Sơn</h2>
+                    <p class="story-desc">Nổi tiếng với mắm Châu Đốc và những cánh đồng thốt nốt bạt ngàn, An Giang mang đến hương vị đậm đà của vùng biên thùy Tây Nam Bộ.</p>
+                    <a href="#" class="explore-link">Khám phá sản vật <i data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Province 4: Cần Thơ -->
+            <div class="province-slide">
+                <div class="slide-bg" style="background-image: url('img/image\ copy\ 11.png')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <span class="province-tag">Cần Thơ</span>
+                    <h2>Gạo Trắng Nước Trong</h2>
+                    <p class="story-desc">Thủ phủ của miền Tây sông nước với chợ nổi Cái Răng nhộn nhịp, nơi tinh hoa lúa gạo và trái cây Nam Bộ hội tụ và tỏa sáng.</p>
+                    <a href="#" class="explore-link">Khám phá sản vật <i data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Navigation Dots -->
+            <div class="province-nav-dots">
+                <span class="p-dot active" data-index="0"></span>
+                <span class="p-dot" data-index="1"></span>
+                <span class="p-dot" data-index="2"></span>
+                <span class="p-dot" data-index="3"></span>
             </div>
         </section>
 
@@ -111,7 +151,7 @@
         </section>
     </main>
 
-    <footer id="footer">
+  <footer id="footer">
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="logo">
@@ -120,15 +160,73 @@
                 </div>
                 <p>Nâng tầm giá trị đặc sản Việt, hỗ trợ chuyển đổi số cho hộ kinh doanh địa phương.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 NamBộ Specialties. Thiết kế bởi Antigravity.</p>
+            <div class="footer-links">
+                <h4>Về chúng tôi</h4>
+                <a href="#">Giới thiệu</a>
+                <a href="#">Liên hệ</a>
+                <a href="#">Chính sách bảo mật</a>
             </div>
+            <div class="footer-links">
+                <h4>Dành cho người bán</h4>
+                <a href="#">Đăng ký gian hàng</a>
+                <a href="#">Quy định bán hàng</a>
+                <a href="#">Thanh toán & Đối soát</a>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Bản tin</h4>
+                <p>Nhận thông báo về các đặc sản mới nhất.</p>
+                <div class="subscribe-box">
+                    <input type="email" placeholder="Email của bạn">
+                    <button>Gửi</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 NamBộ Specialties. Thiết kế bởi Antigravity.</p>
         </div>
     </footer>
 
     <script src="main.js"></script>
     <script>
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            // Khởi tạo icon
+            lucide.createIcons();
+
+            const slides = document.querySelectorAll('.province-slide');
+            const dots = document.querySelectorAll('.p-dot');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function updateSlide(index) {
+                slides[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                
+                currentSlide = index;
+                
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+
+            function startAutoAdvance() {
+                slideInterval = setInterval(() => {
+                    const next = (currentSlide + 1) % slides.length;
+                    updateSlide(next);
+                }, 4000); // Đã giảm xuống 4 giây
+            }
+
+            if (slides.length > 0) {
+                startAutoAdvance();
+            }
+
+            // Click on dots to jump to slide
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    clearInterval(slideInterval); // Stop auto when user interacts
+                    updateSlide(index);
+                    startAutoAdvance(); // Restart auto
+                });
+            });
+        });
     </script>
 </body>
 

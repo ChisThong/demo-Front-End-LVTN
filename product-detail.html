@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm | NamBộ Specialties</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="product-detail.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <nav id="navbar" class="scrolled permanent-opaque">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <span class="logo-icon">🌴</span>
+                <span class="logo-text">NamBộ<span>Specialties</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Trang chủ</a>
+                <a href="about.html">Giới thiệu</a>
+                <a href="specialties.html" class="active">Đặc sản</a>
+                <a href="map.html">Bản đồ đặc sản</a>
+                <a href="intro.html">Câu chuyện sản vật</a>
+            </div>
+            <div class="nav-actions">
+                <button class="search-btn"><i data-lucide="search"></i></button>
+                <button class="cart-btn" onclick="window.location.href='cart.html'">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="login-btn" onclick="window.location.href='login.html'">Đăng nhập</button>
+                <button class="seller-btn" onclick="window.location.href='shop/dashboard.html'">Kênh người bán</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="product-detail-container">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs">
+            <a href="index.html">Trang chủ</a>
+            <i data-lucide="chevron-right"></i>
+            <a href="specialties.html">Đặc sản</a>
+            <i data-lucide="chevron-right"></i>
+            <span id="breadcrumb-product-name">Sản phẩm</span>
+        </div>
+
+        <div id="product-content">
+            <!-- Content will be injected by JavaScript -->
+            <div style="text-align: center; padding: 100px;">
+                <p>Đang tải thông tin sản phẩm...</p>
+            </div>
+        </div>
+
+        <!-- Product Tabs -->
+        <section class="product-tabs">
+            <div class="tabs-nav">
+                <div class="tab-link active" onclick="switchTab(event, 'description')">Mô tả chi tiết</div>
+                <div class="tab-link" onclick="switchTab(event, 'reviews')">Đánh giá & Bình luận (12)</div>
+                <div class="tab-link" onclick="switchTab(event, 'shipping')">Chính sách vận chuyển</div>
+            </div>
+
+            <div id="description" class="tab-content active">
+                <div class="description-text" style="max-width: 800px; color: var(--text-muted); line-height: 1.8;">
+                    <p id="detail-full-description">Sản phẩm chất lượng cao từ vùng đất Nam Bộ...</p>
+                    <br>
+                    <p>Mỗi sản phẩm đều được chúng tôi kiểm duyệt kỹ lưỡng về nguồn gốc, quy trình sản xuất và chất
+                        lượng thành phẩm. Chúng tôi cam kết mang đến cho bạn những giá trị thật nhất từ làng nghề truyền
+                        thống.</p>
+                </div>
+            </div>
+
+            <div id="reviews" class="tab-content">
+                <div class="reviews-grid">
+                    <div class="review-stats">
+                        <div class="big-rating">
+                            <h2>4.8</h2>
+                            <div class="stars" style="justify-content: center; margin: 0.5rem 0;">
+                                <i data-lucide="star" fill="#FFB300"></i>
+                                <i data-lucide="star" fill="#FFB300"></i>
+                                <i data-lucide="star" fill="#FFB300"></i>
+                                <i data-lucide="star" fill="#FFB300"></i>
+                                <i data-lucide="star-half" fill="#FFB300"></i>
+                            </div>
+                            <p class="review-count">Dựa trên 12 đánh giá</p>
+                        </div>
+                        <div class="rating-bars">
+                            <div class="bar-item">
+                                <span>5 sao</span>
+                                <div class="bar-bg">
+                                    <div class="bar-fill" style="width: 85%;"></div>
+                                </div>
+                                <span>85%</span>
+                            </div>
+                            <div class="bar-item">
+                                <span>4 sao</span>
+                                <div class="bar-bg">
+                                    <div class="bar-fill" style="width: 10%;"></div>
+                                </div>
+                                <span>10%</span>
+                            </div>
+                            <div class="bar-item">
+                                <span>3 sao</span>
+                                <div class="bar-bg">
+                                    <div class="bar-fill" style="width: 5%;"></div>
+                                </div>
+                                <span>5%</span>
+                            </div>
+                            <div class="bar-item">
+                                <span>2 sao</span>
+                                <div class="bar-bg">
+                                    <div class="bar-fill" style="width: 0%;"></div>
+                                </div>
+                                <span>0%</span>
+                            </div>
+                            <div class="bar-item">
+                                <span>1 sao</span>
+                                <div class="bar-bg">
+                                    <div class="bar-fill" style="width: 0%;"></div>
+                                </div>
+                                <span>0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reviews-main">
+                        <div class="comment-form-container">
+                            <div class="comment-form">
+                                <h3>Viết đánh giá của bạn</h3>
+                                <div class="star-rating-input" id="ratingInput">
+                                    <i data-lucide="star" onclick="setRating(1)"></i>
+                                    <i data-lucide="star" onclick="setRating(2)"></i>
+                                    <i data-lucide="star" onclick="setRating(3)"></i>
+                                    <i data-lucide="star" onclick="setRating(4)"></i>
+                                    <i data-lucide="star" onclick="setRating(5)"></i>
+                                </div>
+                                <div class="form-group">
+                                    <label>Bình luận</label>
+                                    <textarea rows="4" placeholder="Chia sẻ cảm nhận của bạn về sản phẩm..."></textarea>
+                                </div>
+                                <button class="submit-comment">Gửi đánh giá</button>
+                            </div>
+                        </div>
+
+                        <div class="review-list">
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="user-info">
+                                        <img src="https://ui-avatars.com/api/?name=Nguyễn+Văn+A&background=random"
+                                            class="user-avatar" alt="User">
+                                        <div>
+                                            <div class="user-name">Nguyễn Văn An</div>
+                                            <div class="stars">
+                                                <i data-lucide="star" fill="#FFB300" size="14"></i>
+                                                <i data-lucide="star" fill="#FFB300" size="14"></i>
+                                                <i data-lucide="star" fill="#FFB300" size="14"></i>
+                                                <i data-lucide="star" fill="#FFB300" size="14"></i>
+                                                <i data-lucide="star" fill="#FFB300" size="14"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-date">2 ngày trước</div>
+                                </div>
+                                <p class="review-content">Sản phẩm rất ngon, đóng gói kỹ càng. Giao hàng nhanh hơn dự
+                                    kiến. Rất hài lòng!</p>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="user-info">
+                                        <img src="https://ui-avatars.com/api/?name=Trần+Thị+B&background=random"
+                                            class="user-avatar" alt="User">
+                                        <div>
+                                            <div class="user-name">Trần Thị Bích</div>
+                                            <div class="stars">
+                                                <i data-lucide="star" fill="#FFB300" size="14"></i>
+                                                <i data-lucide="star" fill="#FFB300" size="14"></i>
+                                                <i data-lucide="star" fill="#FFB300" size="14"></i>
+                                                <i data-lucide="star" fill="#FFB300" size="14"></i>
+                                                <i data-lucide="star" size="14"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-date">1 tuần trước</div>
+                                </div>
+                                <p class="review-content">Vị ngọt vừa phải, thơm mùi tự nhiên. Sẽ tiếp tục ủng hộ shop
+                                    lần sau.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="shipping" class="tab-content">
+                <div class="shipping-info" style="color: var(--text-muted); line-height: 1.8;">
+                    <h4>Thời gian giao hàng:</h4>
+                    <ul>
+                        <li>Nội thành: 1-2 ngày làm việc.</li>
+                        <li>Các tỉnh miền Tây: 2-3 ngày làm việc.</li>
+                        <li>Toàn quốc: 3-5 ngày làm việc.</li>
+                    </ul>
+                    <br>
+                    <h4>Phí vận chuyển:</h4>
+                    <p>Đồng giá 30.000đ cho đơn hàng dưới 500.000đ. Miễn phí vận chuyển cho đơn hàng từ 500.000đ trở
+                        lên.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Products -->
+        <section class="related-products" style="margin-top: 6rem;">
+            <div class="section-header" style="margin-bottom: 3rem;">
+                <h2 style="font-size: 2rem; color: var(--text-dark);">Sản phẩm liên quan</h2>
+                <p style="color: var(--text-muted);">Có thể bạn cũng thích những đặc sản này</p>
+            </div>
+            <div class="product-grid" id="relatedGrid">
+                <!-- Related products will be injected by JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">🌴</span>
+                    <span class="logo-text">NamBộ<span>Specialties</span></span>
+                </div>
+                <p>Nâng tầm giá trị đặc sản Việt, hỗ trợ chuyển đổi số cho hộ kinh doanh địa phương.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Về chúng tôi</h4>
+                <a href="#">Giới thiệu</a>
+                <a href="#">Liên hệ</a>
+                <a href="#">Chính sách bảo mật</a>
+            </div>
+            <div class="footer-links">
+                <h4>Dành cho người bán</h4>
+                <a href="#">Đăng ký gian hàng</a>
+                <a href="#">Quy định bán hàng</a>
+                <a href="#">Thanh toán & Đối soát</a>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Bản tin</h4>
+                <p>Nhận thông báo về các đặc sản mới nhất.</p>
+                <div class="subscribe-box">
+                    <input type="email" placeholder="Email của bạn">
+                    <button>Gửi</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 NamBộ Specialties. Thiết kế bởi Antigravity.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const productId = parseInt(params.get('id')) || 1;
+
+            const product = products.find(p => p.id === productId);
+
+            if (product) {
+                renderProductDetail(product);
+                renderRelatedProducts(product);
+            } else {
+                document.getElementById('product-content').innerHTML = `
+                    <div style="text-align: center; padding: 100px;">
+                        <h2>Không tìm thấy sản phẩm!</h2>
+                        <a href="index.html" class="btn-primary" style="display:inline-block; margin-top:20px; text-decoration:none;">Về trang chủ</a>
+                    </div>
+                `;
+            }
+
+            lucide.createIcons();
+        });
+
+        function renderProductDetail(product) {
+            document.title = `${product.name} | NamBộ Specialties`;
+            document.getElementById('breadcrumb-product-name').textContent = product.name;
+            document.getElementById('detail-full-description').textContent = product.description + " Đây là dòng sản phẩm đặc trưng được tuyển chọn từ những vùng nguyên liệu sạch, đảm bảo an toàn vệ sinh thực phẩm và giữ trọn hương vị truyền thống.";
+
+            const content = document.getElementById('product-content');
+            content.innerHTML = `
+                <div class="product-main">
+                    <div class="product-gallery">
+                        <div class="main-image-wrapper">
+                            <div class="gallery-nav">
+                                <button onclick="moveGallery(-1)"><i data-lucide="chevron-left"></i></button>
+                                <button onclick="moveGallery(1)"><i data-lucide="chevron-right"></i></button>
+                            </div>
+                            <img src="${product.image}" alt="${product.name}" id="mainImg">
+                        </div>
+                        <div class="thumbnail-list">
+                            ${(product.images || [product.image]).map((img, idx) => `
+                                <div class="thumbnail-item ${idx === 0 ? 'active' : ''}" onclick="changeMainImage('${img}', this, ${idx})">
+                                    <img src="${img}" alt="${product.name} ${idx + 1}">
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="badge-large">${product.badge}</div>
+                        <h1>${product.name}</h1>
+                        <div class="product-meta">
+                            <div class="rating-summary">
+                                <div class="stars">
+                                    <i data-lucide="star" fill="#FFB300"></i>
+                                    <i data-lucide="star" fill="#FFB300"></i>
+                                    <i data-lucide="star" fill="#FFB300"></i>
+                                    <i data-lucide="star" fill="#FFB300"></i>
+                                    <i data-lucide="star" fill="#FFB300"></i>
+                                </div>
+                                <span class="review-count">(12 đánh giá)</span>
+                            </div>
+                            <span style="color: var(--secondary); font-weight: 700;">Đã bán 250+</span>
+                        </div>
+                        <div class="product-price">${product.price}</div>
+                        <p style="color: var(--text-muted); font-size: 1.1rem;">${product.description}</p>
+                        
+                        <div class="product-attributes">
+                            <div class="attribute-item">
+                                <span>Xuất xứ</span>
+                                <span>${product.origin}</span>
+                            </div>
+                            <div class="attribute-item">
+                                <span>Danh mục</span>
+                                <span>${product.category}</span>
+                            </div>
+                            <div class="attribute-item">
+                                <span>Tình trạng</span>
+                                <span>Còn hàng</span>
+                            </div>
+                            <div class="attribute-item">
+                                <span>Đơn vị</span>
+                                <span>Gói/Hộp</span>
+                            </div>
+                        </div>
+
+                        <div class="purchase-actions">
+                            <div class="quantity-selector">
+                                <button class="qty-btn" onclick="updateQty(-1)"><i data-lucide="minus"></i></button>
+                                <input type="number" class="qty-input" value="1" id="qty">
+                                <button class="qty-btn" onclick="updateQty(1)"><i data-lucide="plus"></i></button>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="add-to-cart-large" onclick="addToCart(${product.id})">
+                                    <i data-lucide="shopping-cart"></i>
+                                    Thêm vào giỏ hàng
+                                </button>
+                                <button class="buy-now-btn" onclick="buyNow(${product.id})">
+                                    Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shop Section -->
+                <div class="shop-section">
+                    <div class="shop-info-main">
+                        <div class="shop-avatar-wrapper">
+                            <img src="https://ui-avatars.com/api/?name=Cô+Ba+Bến+Tre&background=D44E28&color=fff" class="shop-avatar" alt="Shop Avatar">
+                            <div class="shop-badge-premium">Yêu thích</div>
+                        </div>
+                        <div class="shop-details">
+                            <h3>Cô Ba Bến Tre</h3>
+                            <p><i data-lucide="check-circle" size="14"></i> Online 5 phút trước</p>
+                            <p style="margin-top: 5px;"><i data-lucide="map-pin" size="14"></i> Bến Tre, Việt Nam</p>
+                        </div>
+                    </div>
+                    <div class="shop-stats">
+                        <div class="stat-box">
+                            <span>Đánh giá</span>
+                            <span>4.9/5</span>
+                        </div>
+                        <div class="stat-box">
+                            <span>Sản phẩm</span>
+                            <span>85</span>
+                        </div>
+                        <div class="stat-box">
+                            <span>Phản hồi</span>
+                            <span>98%</span>
+                        </div>
+                    </div>
+                    <div class="shop-actions">
+                        <button class="btn-chat"><i data-lucide="message-circle"></i> Chat ngay</button>
+                        <button class="btn-shop-outline"><i data-lucide="store"></i> Xem Shop</button>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function renderRelatedProducts(currentProduct) {
+            const related = products
+                .filter(p => p.category === currentProduct.category && p.id !== currentProduct.id)
+                .slice(0, 4);
+
+            if (related.length === 0) {
+                const relatedSection = document.querySelector('.related-products');
+                if (relatedSection) relatedSection.style.display = 'none';
+                return;
+            }
+
+            const grid = document.getElementById('relatedGrid');
+            grid.innerHTML = related.map(product => `
+                <div class="product-card" onclick="window.location.href='product-detail.html?id=${product.id}'" style="cursor: pointer;">
+                    <div class="product-img-wrapper">
+                        <div class="product-badge">${product.badge}</div>
+                        <img src="${product.image}" alt="${product.name}" class="product-img">
+                    </div>
+                    <div class="product-details">
+                        <h3>${product.name}</h3>
+                        <div class="product-origin">
+                            <i data-lucide="map-pin" style="width:14px"></i>
+                            <span>${product.origin}</span>
+                        </div>
+                        <p class="product-description">${product.description || ""}</p>
+                        <div class="product-footer">
+                            <span class="price">${product.price}</span>
+                            <button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${product.id})">
+                                <i data-lucide="plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function updateQty(val) {
+            const input = document.getElementById('qty');
+            let newQty = parseInt(input.value) + val;
+            if (newQty < 1) newQty = 1;
+            input.value = newQty;
+        }
+
+        function switchTab(event, tabId) {
+            document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        let currentRating = 0;
+        function setRating(r) {
+            currentRating = r;
+            const stars = document.querySelectorAll('#ratingInput i');
+            stars.forEach((star, index) => {
+                if (index < r) {
+                    star.classList.add('active');
+                    star.setAttribute('fill', '#FFB300');
+                } else {
+                    star.classList.remove('active');
+                    star.removeAttribute('fill');
+                }
+            });
+        }
+        let currentImgIndex = 0;
+        function changeMainImage(url, el, index) {
+            document.getElementById('mainImg').src = url;
+            document.querySelectorAll('.thumbnail-item').forEach(item => item.classList.remove('active'));
+            el.classList.add('active');
+            currentImgIndex = index;
+        }
+
+        function moveGallery(dir) {
+            const thumbs = document.querySelectorAll('.thumbnail-item');
+            let nextIndex = currentImgIndex + dir;
+            if (nextIndex < 0) nextIndex = thumbs.length - 1;
+            if (nextIndex >= thumbs.length) nextIndex = 0;
+
+            thumbs[nextIndex].click();
+        }
+    </script>
+</body>
+
+</html>
