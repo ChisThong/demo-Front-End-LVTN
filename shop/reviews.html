@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đánh giá | Kênh Người Bán</title>
+    <!-- Giao diện mới -->
+    <link rel="stylesheet" href="seller_theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .review-overview {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .rating-box {
+            background: var(--seller-sidebar);
+            color: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .rating-box .score {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--seller-active);
+        }
+        .rating-bars-container {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+        }
+        .rating-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+        }
+        .bar-track {
+            flex: 1;
+            height: 10px;
+            background: #eee;
+            border-radius: 5px;
+        }
+        .bar-fill {
+            height: 100%;
+            background: #FFB300;
+            border-radius: 5px;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+        }
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .reviewer img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .product-ref {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--seller-bg);
+            padding: 10px 15px;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+        .product-ref img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        
+        .seller-reply-box {
+            background: var(--seller-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            position: relative;
+        }
+        .seller-reply-box::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 1.5rem;
+            height: calc(100% - 3rem);
+            width: 4px;
+            background: var(--seller-active);
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: white;
+            width: 500px;
+            border-radius: 24px;
+            padding: 2.5rem;
+        }
+        .modal-content textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            margin: 1.5rem 0;
+            outline: none;
+            resize: vertical;
+            min-height: 120px;
+        }
+        .modal-content textarea:focus {
+            border-color: var(--seller-active);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo" onclick="window.location.href='../index.html'" style="cursor: pointer; padding: 0 2rem; margin-bottom: 3rem; display: flex; align-items: center; gap: 10px;">
+                <span class="logo-icon" style="font-size: 1.5rem;">🌴</span>
+                <span class="logo-text" style="font-size: 1.5rem; font-weight: 800;">Seller<span>Hub</span></span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html"><i data-lucide="layout-dashboard" size="20"></i> Tổng quan</a>
+                <a href="products.html"><i data-lucide="package" size="20"></i> Quản lý sản phẩm</a>
+                <a href="orders.html"><i data-lucide="shopping-bag" size="20"></i> Đơn hàng</a>
+                <a href="reviews.html" class="active"><i data-lucide="star" size="20"></i> Đánh giá</a>
+                <a href="statistics.html"><i data-lucide="bar-chart-3" size="20"></i> Thống kê</a>
+                <a href="settings.html"><i data-lucide="settings" size="20"></i> Cài đặt gian hàng</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="logout-btn"><i data-lucide="log-out" size="18" style="vertical-align: middle; margin-right: 8px;"></i> Đăng xuất</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <div class="header-search">
+                    <i data-lucide="search" size="18" color="#999"></i>
+                    <input type="text" id="reviewSearch" placeholder="Tìm kiếm nội dung đánh giá...">
+                </div>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <button style="background: white; border: none; padding: 12px 24px; border-radius: 100px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);" onclick="window.location.href='../index.html'">
+                        <i data-lucide="home" size="18"></i> Về trang chủ
+                    </button>
+                    <button style="background: white; border: none; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
+                        <i data-lucide="bell" size="18"></i>
+                    </button>
+                    <div style="display: flex; align-items: center; gap: 10px; background: white; padding: 6px 16px 6px 6px; border-radius: 100px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); cursor: pointer;">
+                        <img src="https://ui-avatars.com/api/?name=Ba+Ba+Bến+Tre&background=D44E28&color=fff" style="width: 35px; height: 35px; border-radius: 50%;">
+                        <span style="font-weight: 700; font-size: 0.9rem;">Cô Ba Bến Tre</span>
+                    </div>
+                </div>
+            </header>
+
+            <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 2.5rem; letter-spacing: -0.5px;">Đánh giá từ khách hàng</h2>
+            
+            <div class="review-overview">
+                <div class="rating-box">
+                    <div class="score">4.8</div>
+                    <div style="display: flex; justify-content: center; gap: 5px; margin: 15px 0;">
+                        <i data-lucide="star" fill="#D6B598" color="#D6B598"></i>
+                        <i data-lucide="star" fill="#D6B598" color="#D6B598"></i>
+                        <i data-lucide="star" fill="#D6B598" color="#D6B598"></i>
+                        <i data-lucide="star" fill="#D6B598" color="#D6B598"></i>
+                        <i data-lucide="star" fill="rgba(255,255,255,0.3)" color="transparent"></i>
+                    </div>
+                    <div style="font-weight: 600; opacity: 0.8;">Trên 1.250 đánh giá</div>
+                </div>
+                
+                <div class="rating-bars-container">
+                    <div class="rating-bar-item">
+                        <span>5 Sao</span>
+                        <div class="bar-track"><div class="bar-fill" style="width: 85%;"></div></div>
+                        <span style="color: var(--seller-muted); min-width: 40px; text-align: right;">1.062</span>
+                    </div>
+                    <div class="rating-bar-item">
+                        <span>4 Sao</span>
+                        <div class="bar-track"><div class="bar-fill" style="width: 10%;"></div></div>
+                        <span style="color: var(--seller-muted); min-width: 40px; text-align: right;">125</span>
+                    </div>
+                    <div class="rating-bar-item">
+                        <span>3 Sao</span>
+                        <div class="bar-track"><div class="bar-fill" style="width: 3%;"></div></div>
+                        <span style="color: var(--seller-muted); min-width: 40px; text-align: right;">38</span>
+                    </div>
+                    <div class="rating-bar-item">
+                        <span>2 Sao</span>
+                        <div class="bar-track"><div class="bar-fill" style="width: 1%;"></div></div>
+                        <span style="color: var(--seller-muted); min-width: 40px; text-align: right;">12</span>
+                    </div>
+                    <div class="rating-bar-item">
+                        <span>1 Sao</span>
+                        <div class="bar-track"><div class="bar-fill" style="width: 1%;"></div></div>
+                        <span style="color: var(--seller-muted); min-width: 40px; text-align: right;">13</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="seller-tabs" id="reviewTabs">
+                <div class="seller-tab active" data-filter="all">Tất cả</div>
+                <div class="seller-tab" data-filter="5">5 Sao</div>
+                <div class="seller-tab" data-filter="hasImage">Có hình ảnh</div>
+                <div class="seller-tab" data-filter="unreplied">Chưa trả lời</div>
+            </div>
+
+            <div id="reviewsList">
+                <!-- Reviews injected via JS -->
+            </div>
+            
+        </main>
+    </div>
+
+    <!-- Reply Modal -->
+    <div class="modal-overlay" id="replyModal">
+        <div class="modal-content">
+            <h2 style="font-weight: 800; font-size: 1.5rem; margin-bottom: 0.5rem;">Phản hồi đánh giá</h2>
+            <p style="color: var(--seller-muted); font-size: 0.95rem;">Trả lời của bạn sẽ được hiển thị công khai dưới đánh giá của khách hàng.</p>
+            <textarea id="replyTextarea" placeholder="Nhập nội dung phản hồi của bạn..."></textarea>
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button class="btn-action" id="cancelReplyBtn">Hủy</button>
+                <button class="btn-action" id="submitReplyBtn" style="background: var(--seller-sidebar); color: white; border-color: var(--seller-sidebar);">Gửi Phản Hồi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS riêng biệt -->
+    <script src="seller_reviews.js"></script>
+</body>
+</html>

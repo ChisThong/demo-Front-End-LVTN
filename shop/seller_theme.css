@@ -1,0 +1,221 @@
+/* seller_theme.css - Giao diện mới cho Seller Hub */
+
+:root {
+    --seller-sidebar: #1B2316;
+    --seller-bg: #FAF8F5;
+    --seller-active: #D6B598;
+    --seller-text: #1B2316;
+    --seller-muted: #666666;
+    --border-color: #EEEEEE;
+}
+
+body {
+    background-color: var(--seller-bg);
+    color: var(--seller-text);
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+}
+
+/* Sidebar Override */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: var(--seller-bg);
+}
+
+.sidebar {
+    width: 280px;
+    background: var(--seller-sidebar);
+    color: white;
+    padding: 2rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 100;
+}
+
+.sidebar .logo-text, .sidebar .logo-icon {
+    color: white;
+}
+
+.sidebar .logo-text span {
+    color: var(--seller-active);
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 2rem;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin: 8px 1.5rem;
+    border-radius: 12px;
+}
+
+.sidebar-nav a:hover {
+    color: white;
+    background: rgba(255,255,255,0.05);
+}
+
+.sidebar-nav a.active {
+    background: var(--seller-active);
+    color: var(--seller-text);
+    font-weight: 700;
+}
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+    padding: 0 1.5rem;
+}
+
+.logout-btn {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.logout-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* Main Content Area */
+.dashboard-main {
+    margin-left: 280px;
+    flex: 1;
+    padding: 2rem 3rem;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.header-search {
+    background: white;
+    padding: 12px 24px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 400px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.header-search input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+/* Cards & Tables */
+.card-container {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 2fr 3fr 1.5fr 1.5fr 1.5fr 1fr;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--seller-text);
+    letter-spacing: 0.5px;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 2fr 3fr 1.5fr 1.5fr 1.5fr 1fr;
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    align-items: center;
+    transition: 0.3s;
+}
+.table-row:last-child { border-bottom: none; }
+.table-row:hover { background: #fafafa; border-radius: 12px; }
+
+/* Badges */
+.badge-new {
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-block;
+    text-align: center;
+}
+.badge-pending { background: #FFF3E0; color: #E65100; }
+.badge-packing { background: #E3F2FD; color: #1565C0; }
+.badge-shipping { background: #E8F5E9; color: #2E7D32; }
+.badge-done { background: #F3E5F5; color: #7B1FA2; }
+.badge-cancel { background: #FFEBEE; color: #C62828; }
+
+/* Tabs */
+.seller-tabs {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+.seller-tab {
+    font-weight: 700;
+    color: var(--seller-muted);
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.seller-tab:hover { color: var(--seller-text); }
+.seller-tab.active {
+    color: var(--seller-text);
+    border-bottom-color: var(--seller-text);
+}
+.seller-tab .count {
+    background: #EEEEEE;
+    color: var(--seller-muted);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+}
+.seller-tab.active .count {
+    background: rgba(214, 181, 152, 0.3);
+    color: var(--seller-text);
+}
+
+/* Action Buttons */
+.btn-action {
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: inherit;
+    color: var(--seller-text);
+    font-size: 0.85rem;
+}
+.btn-action:hover {
+    border-color: var(--seller-text);
+    background: var(--seller-text);
+    color: white;
+}

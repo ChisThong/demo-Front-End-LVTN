@@ -66,7 +66,11 @@
                 <h1 id="view-title">Dashboard hệ thống</h1>
                 <p>Chào mừng trở lại, hôm nay hệ thống có gì mới?</p>
             </div>
-            <div class="top-actions">
+            <div class="top-actions" style="display: flex; align-items: center; gap: 15px;">
+                <a href="../index.html" class="btn-action" style="text-decoration: none; display: flex; align-items: center; gap: 8px; color: var(--text-dark); background: white; border: 1px solid #E5E7EB; padding: 8px 15px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                    <i data-lucide="home" style="width: 18px;"></i>
+                    Về trang chủ
+                </a>
                 <button class="icon-btn" style="position: relative;">
                     <i data-lucide="bell"></i>
                     <span
@@ -377,63 +381,29 @@
             </div>
             <div class="map-config-layout">
                 <div class="province-list">
-                    <!-- Bến Tre (Tree View) -->
+                    <!-- TP. Hồ Chí Minh -->
                     <div class="tree-node-container">
                         <div class="province-item active" onclick="toggleTree(this)">
-                            Bến Tre <i data-lucide="chevron-right" style="width:16px; transition: transform 0.3s; transform: rotate(90deg);"></i>
+                            TP. Hồ Chí Minh <i data-lucide="chevron-right" style="width:16px; transition: transform 0.3s; transform: rotate(90deg);"></i>
                         </div>
                         <div class="tree-children open">
-                            <!-- Commune 1: Phường An Hội (Merged) -->
                             <div class="tree-node-container">
                                 <div class="tree-item" onclick="toggleTree(this)">
-                                    Phường An Hội <i data-lucide="chevron-right" style="width:14px; transition: transform 0.3s;"></i>
+                                    Quận 1 <i data-lucide="chevron-right" style="width:14px; transition: transform 0.3s;"></i>
                                 </div>
                                 <div class="tree-sub-children">
-                                    <div class="tree-sub-item">Khu phố 1</div>
-                                    <div class="tree-sub-item">Khu phố 2</div>
-                                    <div class="tree-sub-item">Khu phố 3</div>
-                                    <div class="tree-sub-item">Khu phố 4</div>
-                                </div>
-                            </div>
-                            <!-- Commune 2: Xã An Phước (Merged) -->
-                            <div class="tree-node-container">
-                                <div class="tree-item" onclick="toggleTree(this)">
-                                    Xã An Phước <i data-lucide="chevron-right" style="width:14px; transition: transform 0.3s;"></i>
-                                </div>
-                                <div class="tree-sub-children">
-                                    <div class="tree-sub-item">Ấp An Phú</div>
-                                    <div class="tree-sub-item">Ấp Phước Hậu</div>
-                                    <div class="tree-sub-item">Ấp Hóa 1</div>
-                                </div>
-                            </div>
-                            <!-- Commune 3: Xã Tường Đa (Merged) -->
-                            <div class="tree-node-container">
-                                <div class="tree-item" onclick="toggleTree(this)">
-                                    Xã Tường Đa <i data-lucide="chevron-right" style="width:14px; transition: transform 0.3s;"></i>
-                                </div>
-                                <div class="tree-sub-children">
-                                    <div class="tree-sub-item">Ấp Tường Sơn</div>
-                                    <div class="tree-sub-item">Ấp Tường Hiệp</div>
-                                </div>
-                            </div>
-                            <!-- Commune 4: TT Châu Thành (Merged) -->
-                            <div class="tree-node-container">
-                                <div class="tree-item" onclick="toggleTree(this)">
-                                    TT Châu Thành <i data-lucide="chevron-right" style="width:14px; transition: transform 0.3s;"></i>
-                                </div>
-                                <div class="tree-sub-children">
-                                    <div class="tree-sub-item">Khu phố 1</div>
-                                    <div class="tree-sub-item">Khu phố 2</div>
+                                    <div class="tree-sub-item">Phường Bến Nghé</div>
+                                    <div class="tree-sub-item">Phường Bến Thành</div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="province-item">Tây Ninh <i data-lucide="chevron-right" style="width:16px;"></i></div>
+                    <div class="province-item">Đồng Nai <i data-lucide="chevron-right" style="width:16px;"></i></div>
                     <div class="province-item">Đồng Tháp <i data-lucide="chevron-right" style="width:16px;"></i></div>
-                    <div class="province-item">Tiền Giang <i data-lucide="chevron-right" style="width:16px;"></i></div>
-                    <div class="province-item">Cần Thơ <i data-lucide="chevron-right" style="width:16px;"></i></div>
-                    <div class="province-item">Long An <i data-lucide="chevron-right" style="width:16px;"></i></div>
-                    <div class="province-item">Kiên Giang <i data-lucide="chevron-right" style="width:16px;"></i></div>
+                    <div class="province-item">Vĩnh Long <i data-lucide="chevron-right" style="width:16px;"></i></div>
                     <div class="province-item">An Giang <i data-lucide="chevron-right" style="width:16px;"></i></div>
+                    <div class="province-item">TP. Cần Thơ <i data-lucide="chevron-right" style="width:16px;"></i></div>
                     <div class="province-item">Cà Mau <i data-lucide="chevron-right" style="width:16px;"></i></div>
                 </div>
                 <div class="map-pins-area">
