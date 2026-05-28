@@ -303,6 +303,9 @@ body.cart-page-body {
 .summary-wrapper {
     position: sticky;
     top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .summary-box {
@@ -383,3 +386,199 @@ body.cart-page-body {
         width: 40px;
     }
 }
+
+/* Premium Product Suggestions Styles */
+.suggestions-box {
+    overflow: hidden;
+}
+
+/* Override product-grid defaults when used inside suggestions-box */
+.suggestions-box .product-grid {
+    margin: 0;
+    padding: 0 20px 20px;
+    max-width: none;
+}
+
+.suggestions-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--cart-border);
+    font-weight: 700;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--cart-text);
+}
+
+.suggestions-header i {
+    color: #f2b007; /* Gold Sparkles */
+    width: 20px;
+    height: 20px;
+}
+
+.suggestions-grid {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Vertical single-column layout for right panel */
+.suggestions-grid--vertical {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    gap: 12px;
+}
+
+.suggestions-grid--vertical .suggestion-card {
+    flex-direction: row;
+    border-radius: 8px;
+    height: auto;
+}
+
+.suggestions-grid--vertical .suggestion-img-wrapper {
+    width: 80px;
+    min-width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    border-radius: 8px 0 0 8px;
+}
+
+.suggestions-grid--vertical .suggestion-details {
+    padding: 10px;
+    gap: 4px;
+    justify-content: center;
+}
+
+.suggestions-grid--vertical .suggestion-details h4 {
+    font-size: 0.85rem;
+    line-height: 1.25;
+}
+
+.suggestions-grid--vertical .suggestion-origin {
+    font-size: 0.75rem;
+}
+
+.suggestions-grid--vertical .suggestion-price {
+    font-size: 0.9rem;
+}
+
+.suggestions-grid--vertical .suggestion-footer {
+    padding-top: 4px;
+}
+
+.suggestion-card {
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.suggestion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    border-color: #eaeaea;
+}
+
+.suggestion-img-wrapper {
+    position: relative;
+    height: 130px;
+    overflow: hidden;
+    background: #f8f8f8;
+}
+
+.suggestion-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.suggestion-card:hover .suggestion-img {
+    transform: scale(1.08);
+}
+
+.suggestion-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: var(--cart-red);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    z-index: 2;
+}
+
+.suggestion-details {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.suggestion-details h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--cart-text);
+    line-height: 1.3;
+}
+
+.suggestion-origin {
+    font-size: 0.8rem;
+    color: var(--cart-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.suggestion-origin i {
+    width: 12px;
+    height: 12px;
+}
+
+.suggestion-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 6px;
+}
+
+.suggestion-price {
+    color: var(--cart-red);
+    font-weight: 800;
+    font-size: 1.05rem;
+}
+
+.add-suggested-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--cart-text);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.add-suggested-btn:hover {
+    background: var(--cart-red);
+    transform: scale(1.1);
+}
+
+.add-suggested-btn i {
+    width: 16px;
+    height: 16px;
+}
+

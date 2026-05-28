@@ -74,16 +74,19 @@
 
         <div class="cart-layout-grid" id="cart-layout-grid">
             <!-- Left: Product List -->
-            <div class="cart-box list-box">
-                <div class="list-header">
-                    <i data-lucide="list"></i> <span id="list-header-count">Danh sách sản phẩm (0)</span>
-                </div>
-                <div class="cart-items" id="cart-list">
-                    <!-- Items will be injected here -->
+            <div class="left-column-wrapper" style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Product List -->
+                <div class="cart-box list-box">
+                    <div class="list-header">
+                        <i data-lucide="list"></i> <span id="list-header-count">Danh sách sản phẩm (0)</span>
+                    </div>
+                    <div class="cart-items" id="cart-list">
+                        <!-- Items will be injected here -->
+                    </div>
                 </div>
             </div>
 
-            <!-- Right: Summary -->
+            <!-- Right: Summary Only -->
             <div class="summary-wrapper">
                 <div class="cart-box summary-box">
                     <div class="summary-header">
@@ -104,6 +107,16 @@
                 <button class="checkout-btn-main" onclick="alert('Chuyển đến trang thanh toán...')">MUA HÀNG</button>
             </div>
         </div>
+
+        <!-- Suggestions Section — full width below both columns -->
+        <div class="cart-box suggestions-box">
+            <div class="suggestions-header">
+                <i data-lucide="sparkles"></i> Có thể bạn sẽ thích
+            </div>
+            <div class="suggestions-grid product-grid" id="suggestions-list">
+                <!-- Suggestions will be dynamically injected here -->
+            </div>
+        </div>
         
         <!-- Empty State -->
         <div id="empty-cart-state" class="cart-box" style="display: none; text-align: center; padding: 60px;">
@@ -119,6 +132,13 @@
             { id: 1, name: "Kẹo Dừa Bến Tre", price: 45000, qty: 2, image: "img/image.png", type: "Đặc sản", variant: "Hộp 500g" },
             { id: 2, name: "Bánh Phồng Sơn Đốc", price: 65000, qty: 1, image: "img/image copy.png", type: "Đặc sản", variant: "Túi 10 cái" },
             { id: 5, name: "Vú Sữa Lò Rèn", price: 95000, qty: 3, image: "https://th.bing.com/th/id/R.a78476ddac2710a2bec92ec33474e4c9?rik=YOPVhaYCdEQd9g&pid=ImgRaw&r=0", type: "Trái cây tươi", variant: "Hộp 1kg" }
+        ];
+
+        const recommendedProducts = [
+            { id: 3, name: "Bánh Pía Sóc Trăng", price: 120000, image: "https://th.bing.com/th/id/R.ca943f001e9cbe2584e3fdcc62354526?rik=C3Ej4QnW2V%2buGQ&pid=ImgRaw&r=0", type: "Bánh kẹo", variant: "Hộp 4 cái", origin: "Sóc Trăng", badge: "Bán chạy", description: "Lớp vỏ mỏng mềm, nhân đậu xanh sầu riêng đậm đà, đặc sản nức tiếng xứ Sóc." },
+            { id: 4, name: "Mắm Thái Châu Đốc", price: 85000, image: "https://www.sgtiepthi.vn/wp-content/uploads/2019/10/m%E1%BA%AFm-3.jpg", type: "Đồ khô & Mắm", variant: "Hũ 500g", origin: "An Giang", badge: "Gia truyền", description: "Sự kết hợp hoàn hảo giữa mắm cá và đu đủ bào sợi giòn ngọt trứ danh Châu Đốc." },
+            { id: 10, name: "Rượu Sim Phú Quốc", price: 180000, image: "https://resortsinternational.vn/wp-content/uploads/2021/04/ruou-sim-phu-quoc-resorts-international.jpg", type: "Đồ uống", variant: "Chai 750ml", origin: "Kiên Giang", badge: "Đặc sản đảo", description: "Lên men tự nhiên từ trái sim rừng mọng nước, vị ngọt chát nhẹ đặc trưng của đảo Ngọc." },
+            { id: 6, name: "Tôm Khô Cà Mau", price: 450000, image: "https://th.bing.com/th/id/OIP.pDexYkj9yNEERLv77RxOSQHaE6?w=235&h=180&c=7&r=0&o=7&pid=1.7&rm=3", type: "Đồ khô & Mắm", variant: "100g", origin: "Cà Mau", badge: "Cao cấp", description: "Tôm đất tự nhiên phơi khô, thịt chắc, màu đỏ cam bắt mắt và vị ngọt đậm đà." }
         ];
 
         function renderCart() {
@@ -164,8 +184,65 @@
                 </div>
             `).join('');
 
+            renderSuggestions();
             updateSummary();
             lucide.createIcons();
+        }
+
+        function renderSuggestions() {
+            const list = document.getElementById('suggestions-list');
+            if (!list) return;
+
+            // Only show suggestions that are not already in the cart
+            const unadded = recommendedProducts.filter(p => !cartItems.some(item => item.id === p.id));
+            
+            const suggestionsBox = document.querySelector('.suggestions-box');
+            if (unadded.length === 0) {
+                if (suggestionsBox) suggestionsBox.style.display = 'none';
+                return;
+            } else {
+                if (suggestionsBox) suggestionsBox.style.display = 'block';
+            }
+
+            // Render using the same product-card structure as specialties page
+            list.innerHTML = unadded.map(prod => `
+                <div class="product-card" onclick="if(!event.target.closest('.add-to-cart')) window.location.href='product-detail.html?id=${prod.id}'" style="cursor: pointer;">
+                    <div class="product-img-wrapper">
+                        <div class="product-badge">${prod.badge}</div>
+                        <img src="${prod.image}" alt="${prod.name}" class="product-img">
+                    </div>
+                    <div class="product-details">
+                        <h3>${prod.name}</h3>
+                        <div class="product-origin">
+                            <i data-lucide="map-pin" style="width:14px"></i>
+                            <span>${prod.origin}</span>
+                        </div>
+                        <p class="product-description">${prod.description}</p>
+                        <div class="product-footer">
+                            <span class="price">${prod.price.toLocaleString('vi-VN')}đ</span>
+                            <button class="add-to-cart" onclick="event.stopPropagation(); addToCartFromSuggestions(${prod.id})" title="Thêm vào giỏ">
+                                <i data-lucide="plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCartFromSuggestions(id) {
+            const prod = recommendedProducts.find(p => p.id === id);
+            if (prod) {
+                cartItems.push({
+                    id: prod.id,
+                    name: prod.name,
+                    price: prod.price,
+                    qty: 1,
+                    image: prod.image,
+                    type: prod.type,
+                    variant: prod.variant
+                });
+                renderCart();
+            }
         }
 
         function updateQty(id, delta) {
