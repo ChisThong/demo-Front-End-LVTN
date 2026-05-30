@@ -54,30 +54,36 @@ body {
     width: 90%;
     max-width: 1400px;
     margin: 0 auto;
+
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 0.8rem 2.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    /* Extremely clear water */
-    backdrop-filter: blur(15px) saturate(140%);
-    -webkit-backdrop-filter: blur(15px) saturate(140%);
+
+    padding: 0.85rem 2.5rem;
+
+    background: rgba(45, 28, 18, 0.55);
+
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+
     border-radius: 100px;
-    /* Pill shape like a droplet */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
     box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.1),
-        inset 0 0 15px rgba(255, 255, 255, 0.02),
-        inset 0 2px 4px rgba(255, 255, 255, 0.15);
-    /* Top highlight */
+        0 15px 40px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+
     transition: var(--transition);
 }
 
 #navbar.scrolled .nav-container {
-    background: rgba(45, 30, 20, 0.75);
-    /* Stronger brown glass when scrolled */
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(35, 22, 15, 0.88);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.35);
 }
 
 .logo {
