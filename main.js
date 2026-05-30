@@ -239,9 +239,11 @@ function setupEventListeners() {
 
     // Login button simulation
     const loginBtn = document.getElementById('loginBtn');
-    loginBtn.addEventListener('click', () => {
-        alert('Chức năng đăng nhập đang được phát triển!');
-    });
+    if (loginBtn) {
+        loginBtn.addEventListener('click', () => {
+            alert('Chức năng đăng nhập đang được phát triển!');
+        });
+    }
 
     // Seller channel simulation
     const sellerBtn = document.getElementById('sellerBtn');
@@ -289,9 +291,75 @@ window.addToCart = (id) => {
     }, 1500);
 };
 
-// Initialize everything
+// Dynamic Mobile Navbar Logic
+function initMobileNavbar() {
+    const navContainer = document.querySelector('.nav-container');
+    const navLinks = document.querySelector('.nav-links');
+    if (!navContainer || !navLinks) return;
+
+    // Check if toggle already exists
+    if (document.getElementById('menuToggle')) return;
+
+    // Create menu toggle button
+    const menuToggle = document.createElement('button');
+    menuToggle.className = 'menu-toggle';
+    menuToggle.id = 'menuToggle';
+    menuToggle.setAttribute('aria-label', 'Toggle navigation menu');
+    menuToggle.innerHTML = '<i data-lucide="menu"></i>';
+
+    // Insert menu toggle in container
+    navContainer.appendChild(menuToggle);
+
+    // Create mobile actions container inside nav-links if not exists
+    let mobileActions = navLinks.querySelector('.mobile-actions');
+    if (!mobileActions) {
+        mobileActions = document.createElement('div');
+        mobileActions.className = 'mobile-actions';
+        
+        // Clone buttons for mobile view to preserve layout
+        const loginBtn = document.querySelector('.login-btn');
+        const sellerBtn = document.querySelector('.seller-btn');
+        
+        if (loginBtn) {
+            const loginClone = loginBtn.cloneNode(true);
+            loginClone.classList.add('mobile-action-btn');
+            mobileActions.appendChild(loginClone);
+        }
+        if (sellerBtn) {
+            const sellerClone = sellerBtn.cloneNode(true);
+            sellerClone.classList.add('mobile-action-btn');
+            mobileActions.appendChild(sellerClone);
+        }
+        navLinks.appendChild(mobileActions);
+    }
+
+    // Toggle menu state
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('active');
+        const isActive = navLinks.classList.contains('active');
+        menuToggle.innerHTML = isActive ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') && !e.target.closest('#navbar')) {
+            navLinks.classList.remove('active');
+            menuToggle.innerHTML = '<i data-lucide="menu"></i>';
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+    });
+}
+
+// Initialize everything safely
 document.addEventListener('DOMContentLoaded', () => {
     initNavbarScroll();
+    initMobileNavbar();
     if (typeof renderProducts === 'function') {
         renderProducts(products);
     }

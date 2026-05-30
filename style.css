@@ -118,6 +118,7 @@ body {
     position: relative;
     padding: 0.5rem 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
 }
 
 .nav-links a:hover,
@@ -2215,4 +2216,142 @@ cite {
 
 .btn-shop-outline:hover i {
     transform: translateX(8px);
+}
+
+/* ==========================================
+   PREMIUM RESPONSIVE MOBILE NAV STYLING
+   ========================================== */
+.menu-toggle,
+.mobile-actions {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    #navbar {
+        padding: 1rem 0;
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 1.8rem;
+        width: 92%;
+        border-radius: 40px;
+    }
+
+    #navbar.scrolled .nav-container {
+        background: rgba(45, 30, 20, 0.92);
+    }
+
+    /* Hide standard nav links and design a luxurious glass drawer overlay */
+    .nav-links {
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: rgba(45, 30, 20, 0.95);
+        backdrop-filter: blur(25px) saturate(160%);
+        -webkit-backdrop-filter: blur(25px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        padding: 2.5rem 2rem;
+        flex-direction: column;
+        gap: 1.8rem;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        transform: translateY(-20px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
+        width: 100%;
+        text-align: center;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        text-shadow: none;
+    }
+
+    .nav-links a:last-of-type {
+        border-bottom: none;
+    }
+
+    /* Hide horizontal buttons on nav-actions bar to reduce clutter */
+    .nav-actions .login-btn,
+    .nav-actions .seller-btn,
+    .nav-actions::before {
+        display: none !important;
+    }
+
+    .nav-actions {
+        gap: 1.2rem;
+    }
+
+    /* Mobile-specific action layout inside expanded menu drawer */
+    .mobile-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 1rem;
+        padding-top: 1.8rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-action-btn {
+        display: block !important;
+        text-align: center;
+        width: 100%;
+        padding: 0.8rem !important;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.95rem;
+    }
+
+    .mobile-actions .login-btn {
+        background: var(--accent) !important;
+        color: #3D2B1F !important;
+    }
+
+    .mobile-actions .seller-btn {
+        border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+        color: var(--white) !important;
+    }
+
+    /* Beautiful Hamburger button styling */
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: var(--white);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .menu-toggle:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: var(--accent);
+        transform: scale(1.05);
+    }
+    
+    .menu-toggle i {
+        width: 22px;
+        height: 22px;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 }
