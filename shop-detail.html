@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng Đặc Sản | NamBộ Specialties</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="shop-detail.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="shop-detail-body">
+    <!-- Navbar -->
+    <nav id="navbar" class="scrolled permanent-opaque">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <span class="logo-icon">🌴</span>
+                <span class="logo-text">NamBộ<span>Specialties</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Trang chủ</a>
+                <a href="about.html">Giới thiệu</a>
+                <a href="specialties.html">Đặc sản</a>
+                <a href="map.html">Bản đồ đặc sản</a>
+                <a href="intro.html">Câu chuyện sản vật</a>
+            </div>
+            <div class="nav-actions">
+                <button class="search-btn"><i data-lucide="search"></i></button>
+                <button class="cart-btn" onclick="window.location.href='cart.html'">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="login-btn" onclick="window.location.href='login.html'">Đăng nhập</button>
+                <button class="seller-btn" onclick="window.location.href='shop/dashboard.html'">Kênh người bán</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="shop-page-wrapper">
+        <!-- Breadcrumbs -->
+        <div class="shop-breadcrumbs-wrapper">
+            <div class="breadcrumbs">
+                <a href="index.html">Trang chủ</a>
+                <i data-lucide="chevron-right"></i>
+                <a href="specialties.html">Cửa hàng đặc sản</a>
+                <i data-lucide="chevron-right"></i>
+                <span id="breadcrumb-shop-name" class="active">Đang tải...</span>
+            </div>
+        </div>
+
+        <div id="shop-content-wrapper">
+            <!-- Dynamic content injected by JavaScript -->
+            <div class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>Đang kết nối gian hàng đặc sản Nam Bộ...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">🌴</span>
+                    <span class="logo-text">NamBộ<span>Specialties</span></span>
+                </div>
+                <p>Nâng tầm giá trị đặc sản Việt, hỗ trợ chuyển đổi số cho hộ kinh doanh địa phương.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Về chúng tôi</h4>
+                <a href="#">Giới thiệu</a>
+                <a href="#">Liên hệ</a>
+                <a href="#">Chính sách bảo mật</a>
+            </div>
+            <div class="footer-links">
+                <h4>Dành cho người bán</h4>
+                <a href="#">Đăng ký gian hàng</a>
+                <a href="#">Quy định bán hàng</a>
+                <a href="#">Thanh toán & Đối soát</a>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Bản tin</h4>
+                <p>Nhận thông báo về các đặc sản mới nhất.</p>
+                <div class="subscribe-box">
+                    <input type="email" placeholder="Email của bạn">
+                    <button>Gửi</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 NamBộ Specialties. Thiết kế bởi Antigravity.</p>
+        </div>
+    </footer>
+
+    <!-- Script Block -->
+    <script>
+        // Mock Shop Data based on the updated DB Schema
+        const shops = [
+            {
+                id: 1,
+                name: "Cô Ba Bến Tre",
+                avatar: "https://ui-avatars.com/api/?name=Co+Ba+Ben+Tre&background=D44E28&color=fff&size=128",
+                banner: "https://sinhcafe.com/images/ben-tre-night-market-2.png",
+                cccd: "079090XXXXXX",
+                address: "Thị trấn Mỏ Cày, Huyện Mỏ Cày Nam, Bến Tre",
+                bank: "Ngân hàng Vietcombank",
+                accountNumber: "1019875XXXX",
+                description: "Nơi cung cấp các đặc sản kẹo dừa, bánh phồng Sơn Đốc truyền thống và các mặt hàng thủ công mỹ nghệ tinh tế từ dừa Bến Tre. Cơ sở gia truyền trên 30 năm uy tín.",
+                status: "Hoạt động",
+                rating: "4.9/5",
+                followers: "12.5k",
+                chatResponse: "98% (trong vài phút)",
+                joinDate: "6 tháng trước",
+                productIds: [1, 9] // Kẹo dừa, Bánh phồng chuối
+            },
+            {
+                id: 2,
+                name: "Nem Lai Vung Út Sa",
+                avatar: "https://ui-avatars.com/api/?name=Nem+Lai+Vung&background=4A6741&color=fff&size=128",
+                banner: "https://nemlaivung.com.vn/wp-content/uploads/2019/11/nem-lai-vung-dong-thap.jpg",
+                cccd: "087090XXXXXX",
+                address: "Xã Tân Thành, Huyện Lai Vung, Đồng Tháp",
+                bank: "Ngân hàng Agribank",
+                accountNumber: "4704205XXXX",
+                description: "Hộ sản xuất nem chua Lai Vung gia truyền đỏ hồng, chua thanh, giòn sần sật bọc lá chùm ruột chuẩn vị truyền thống Sa Đéc - Đồng Tháp.",
+                status: "Hoạt động",
+                rating: "4.8/5",
+                followers: "8.4k",
+                chatResponse: "95% (trong vài giờ)",
+                joinDate: "1 năm trước",
+                productIds: [2, 8] // Nem Lai Vung, Quýt hồng
+            },
+            {
+                id: 3,
+                name: "Trái Cây Chín Hữu Vĩnh Kim",
+                avatar: "https://ui-avatars.com/api/?name=Chin+Huu+Vinh+Kim&background=D4A373&color=fff&size=128",
+                banner: "https://static.mservice.io/blogscontents/momo-upload-api-221028143745-638025646651875182.jpg",
+                cccd: "082090XXXXXX",
+                address: "Xã Vĩnh Kim, Huyện Châu Thành, Tiền Giang",
+                bank: "Ngân hàng BIDV",
+                accountNumber: "6701000XXXX",
+                description: "Nhà vườn chuyên trồng và phân phối Vú sữa Lò Rèn Vĩnh Kim quả to vỏ mỏng, dòng sữa thơm béo ngậy cùng các loại hoa quả đặc sản Nam Bộ chuẩn VietGAP.",
+                status: "Hoạt động",
+                rating: "5.0/5",
+                followers: "15.2k",
+                chatResponse: "100% (trong vài phút)",
+                joinDate: "8 tháng trước",
+                productIds: [5] // Vú sữa Lò Rèn
+            }
+        ];
+
+        // Mock Products array matching main.js products database
+        const products = [
+            {
+                id: 1,
+                name: "Kẹo Dừa Bến Tre",
+                price: "45.000đ",
+                origin: "Bến Tre",
+                description: "Hương vị béo ngậy, thơm lừng từ nước cốt dừa nguyên chất.",
+                category: "Bánh kẹo",
+                image: "https://th.bing.com/th/id/OIP.GQ7g0mBxz0kKGc7jaDK4-AHaFj?w=318&h=191&c=7&r=0&o=7&pid=1.7&rm=3",
+                badge: "Bán chạy"
+            },
+            {
+                id: 2,
+                name: "Nem Lai Vung",
+                price: "65.000đ",
+                origin: "Đồng Tháp",
+                description: "Đặc sản nức tiếng Đồng Tháp với vị chua thanh, giòn sần sật.",
+                category: "Thực phẩm",
+                image: "https://th.bing.com/th/id/OIP.mp96VZwE_Mh5gj1QbrRKIwHaE8?w=263&h=180&c=7&r=0&o=7&pid=1.7&rm=3",
+                badge: "Đặc biệt"
+            },
+            {
+                id: 5,
+                name: "Vú Sữa Lò Rèn",
+                price: "95.000đ/kg",
+                origin: "Tiền Giang",
+                description: "Vỏ mỏng, ruột dày, hương vị ngọt thanh và dòng sữa trắng đục béo ngậy đặc trưng.",
+                category: "Trái cây tươi",
+                image: "https://th.bing.com/th/id/R.a78476ddac2710a2bec92ec33474e4c9?rik=YOPVhaYCdEQd9g&pid=ImgRaw&r=0",
+                badge: "Hữu cơ"
+            },
+            {
+                id: 8,
+                name: "Quýt Hồng Sa Đéc",
+                price: "60.000đ/kg",
+                origin: "Đồng Tháp",
+                description: "Quả to, vỏ mỏng màu hồng cam tuyệt đẹp, mọng nước và có vị chua ngọt thanh mát.",
+                category: "Trái cây tươi",
+                image: "https://th.bing.com/th/id/OIP.dI7o5olnCQsjO6qdCwzoywHaE1?w=259&h=180&c=7&r=0&o=7&pid=1.7&rm=3",
+                badge: "Mùa vụ"
+            },
+            {
+                id: 9,
+                name: "Bánh Phồng Chuối Sơn Đốc",
+                price: "55.000đ/gói",
+                origin: "Bến Tre",
+                description: "Nướng lên giòn rụm, thơm nức mùi chuối chín nướng hòa quyện cùng vị béo của nước cốt dừa.",
+                category: "Bánh kẹo",
+                image: "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8j2yt10jslec6",
+                badge: "Giòn tan"
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const shopId = parseInt(params.get('id')) || 1;
+
+            const shop = shops.find(s => s.id === shopId);
+
+            setTimeout(() => {
+                if (shop) {
+                    renderShopDetail(shop);
+                } else {
+                    document.getElementById('shop-content-wrapper').innerHTML = `
+                        <div class="error-container">
+                            <i data-lucide="alert-triangle" size="64"></i>
+                            <h2>Không tìm thấy gian hàng này!</h2>
+                            <p>Vui lòng kiểm tra lại liên kết hoặc quay lại trang chủ.</p>
+                            <a href="index.html" class="btn-primary-glowing">Về trang chủ</a>
+                        </div>
+                    `;
+                    lucide.createIcons();
+                }
+            }, 500); // Elegant simulated loading
+
+            // Sync cart count
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const countEl = document.querySelector('.cart-count');
+            if (countEl) {
+                countEl.textContent = cart.length;
+            }
+        });
+
+        function renderShopDetail(shop) {
+            document.title = `${shop.name} - Sàn Đặc Sản Nam Bộ`;
+            document.getElementById('breadcrumb-shop-name').textContent = shop.name;
+
+            const shopProducts = products.filter(p => shop.productIds.includes(p.id));
+
+            const wrapper = document.getElementById('shop-content-wrapper');
+            wrapper.innerHTML = `
+                <!-- Premium Shop Banner Area -->
+                <div class="premium-shop-banner-section">
+                    <div class="banner-image" style="background-image: url('${shop.banner}')"></div>
+                    <div class="banner-overlay-gradient"></div>
+                    
+                    <!-- Ambient Glow Effects -->
+                    <div class="ambient-glow glow-1"></div>
+                    <div class="ambient-glow glow-2"></div>
+                </div>
+
+                <!-- Premium Profile Information Card -->
+                <div class="premium-profile-glass-card">
+                    <div class="profile-card-layout">
+                        <!-- Left Avatar & Verified -->
+                        <div class="avatar-column">
+                            <div class="avatar-glow-ring animate-float">
+                                <img src="${shop.avatar}" class="shop-large-avatar" alt="${shop.name}">
+                                <div class="online-pulse-indicator"></div>
+                            </div>
+                        </div>
+
+                        <!-- Center Info Details -->
+                        <div class="info-column">
+                            <div class="shop-badge-and-title">
+                                <h1>${shop.name}</h1>
+                                <span class="premium-verified-badge">
+                                    <i data-lucide="shield-check"></i> Gian Hàng Yêu Thích
+                                </span>
+                            </div>
+                            
+                            <p class="verification-meta">
+                                <i data-lucide="check-circle-2" class="verified-icon"></i>
+                                Hộ kinh doanh nông sản đã xác minh (CCCD: ${shop.cccd})
+                            </p>
+                            
+                            <p class="location-meta">
+                                <i data-lucide="map-pin"></i>
+                                ${shop.address}
+                            </p>
+
+                            <!-- Big CTA Buttons -->
+                            <div class="headline-actions">
+                                <button class="btn-chat-premium" onclick="alert('Đang mở cổng chat với ${shop.name}...')">
+                                    <i data-lucide="message-circle"></i> Chat tư vấn
+                                </button>
+                                <button class="btn-follow-premium" onclick="toggleFollow(this)">
+                                    <i data-lucide="user-plus"></i> Theo dõi cửa hàng
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right Status Details -->
+                        <div class="right-stats-column">
+                            <div class="stats-glass-box">
+                                <div class="mini-stat-item">
+                                    <div class="icon-circle"><i data-lucide="star"></i></div>
+                                    <div class="stat-meta">
+                                        <span class="stat-value">${shop.rating}</span>
+                                        <span class="stat-label">Đánh giá Shop</span>
+                                    </div>
+                                </div>
+                                <div class="mini-stat-item">
+                                    <div class="icon-circle"><i data-lucide="shopping-bag"></i></div>
+                                    <div class="stat-meta">
+                                        <span class="stat-value">${shopProducts.length}</span>
+                                        <span class="stat-label">Sản phẩm có sẵn</span>
+                                    </div>
+                                </div>
+                                <div class="mini-stat-item">
+                                    <div class="icon-circle"><i data-lucide="users"></i></div>
+                                    <div class="stat-meta">
+                                        <span class="stat-value">${shop.followers}</span>
+                                        <span class="stat-label">Người theo dõi</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fine-grained payment & registration details -->
+                    <div class="shop-payment-metadata-footer">
+                        <div class="meta-tag">
+                            <i data-lucide="calendar"></i>
+                            <span>Tham gia: <strong>${shop.joinDate}</strong></span>
+                        </div>
+                        <div class="meta-tag">
+                            <i data-lucide="message-square-text"></i>
+                            <span>Chat phản hồi: <strong>${shop.chatResponse}</strong></span>
+                        </div>
+                        <div class="meta-tag flex-grow-payment">
+                            <i data-lucide="credit-card"></i>
+                            <span>Thanh toán: <strong>${shop.bank} - STK: ${shop.accountNumber}</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Catalog Tabs & Showcase -->
+                <section class="premium-catalog-section">
+                    <div class="catalog-tabs-container">
+                        <button class="premium-tab-btn active" onclick="switchPremiumTab(event, 'grid-showcase')">
+                            <i data-lucide="layout-grid"></i> Sản phẩm đang bán (${shopProducts.length})
+                        </button>
+                        <button class="premium-tab-btn" onclick="switchPremiumTab(event, 'about-showcase')">
+                            <i data-lucide="book-open-check"></i> Giới thiệu & Cam kết sản phẩm
+                        </button>
+                    </div>
+
+                    <!-- Products Grid Showcase -->
+                    <div id="grid-showcase" class="premium-tab-pane active">
+                        <div class="shop-product-grid">
+                            ${shopProducts.length > 0 ? shopProducts.map(product => `
+                                <div class="premium-product-card" onclick="if(!event.target.closest('.btn-quick-add')) window.location.href='product-detail.html?id=${product.id}'">
+                                    <div class="card-image-section">
+                                        <div class="card-badge-glow">${product.badge}</div>
+                                        <img src="${product.image}" alt="${product.name}" class="card-product-img">
+                                        <div class="card-img-overlay"></div>
+                                    </div>
+                                    <div class="card-info-section">
+                                        <div class="product-origin-meta">
+                                            <i data-lucide="map-pin"></i>
+                                            <span>${product.origin}</span>
+                                        </div>
+                                        <h3>${product.name}</h3>
+                                        <p class="product-short-desc">${product.description || ""}</p>
+                                        
+                                        <div class="card-footer-pricing">
+                                            <div class="price-block">
+                                                <span class="currency">đ</span>
+                                                <span class="price-val">${product.price.replace('đ','')}</span>
+                                            </div>
+                                            <button class="btn-quick-add" onclick="event.stopPropagation(); addToCart(${product.id})">
+                                                <i data-lucide="plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('') : `
+                                <div class="empty-products-pane">
+                                    <i data-lucide="inbox" size="48"></i>
+                                    <p>Gian hàng đặc sản chưa đăng bán sản phẩm nào.</p>
+                                </div>
+                            `}
+                        </div>
+                    </div>
+
+                    <!-- About / Story Showcase -->
+                    <div id="about-showcase" class="premium-tab-pane">
+                        <div class="premium-story-panel">
+                            <div class="story-left-decor">
+                                <div class="leaf-icon">🌾</div>
+                                <div class="vertical-dashed-line"></div>
+                            </div>
+                            <div class="story-right-text">
+                                <h2>Hành Trình Gìn Giữ Đặc Sản Vùng Miền</h2>
+                                <p class="story-para">${shop.description}</p>
+                                
+                                <div class="commitments-section">
+                                    <h3><i data-lucide="award"></i> Tiêu Chuẩn Chất Lượng & Cam Kết Sản Phẩm:</h3>
+                                    <div class="commit-grid">
+                                        <div class="commit-item">
+                                            <div class="commit-icon"><i data-lucide="leaf"></i></div>
+                                            <div class="commit-desc">
+                                                <strong>100% Thuần Tự Nhiên</strong>
+                                                <span>Nguyên liệu canh tác an toàn sinh học từ nhà vườn địa phương.</span>
+                                            </div>
+                                        </div>
+                                        <div class="commit-item">
+                                            <div class="commit-icon"><i data-lucide="shield-check"></i></div>
+                                            <div class="commit-desc">
+                                                <strong>Kiểm Định Vệ Sinh ATTP</strong>
+                                                <span>Được chứng nhận an toàn thực phẩm bởi cơ quan quản lý nông nghiệp tỉnh.</span>
+                                            </div>
+                                        </div>
+                                        <div class="commit-item">
+                                            <div class="commit-icon"><i data-lucide="thumbs-up"></i></div>
+                                            <div class="commit-desc">
+                                                <strong>Giữ Trọn Hương Vị Thật</strong>
+                                                <span>Gia truyền thủ công, nói không với chất bảo quản hóa học độc hại.</span>
+                                            </div>
+                                        </div>
+                                        <div class="commit-item">
+                                            <div class="commit-icon"><i data-lucide="truck"></i></div>
+                                            <div class="commit-desc">
+                                                <strong>Vận Chuyển Hỏa Tốc</strong>
+                                                <span>Sản vật đóng gói cẩn thận, bảo quản lạnh nếu cần, ship tới tận tay nhanh nhất.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+            lucide.createIcons();
+        }
+
+        function switchPremiumTab(event, paneId) {
+            document.querySelectorAll('.premium-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.premium-tab-pane').forEach(pane => pane.classList.remove('active'));
+
+            event.target.closest('.premium-tab-btn').classList.add('active');
+            document.getElementById(paneId).classList.add('active');
+        }
+
+        function toggleFollow(btn) {
+            if (btn.classList.contains('followed')) {
+                btn.classList.remove('followed');
+                btn.style = '';
+                btn.innerHTML = '<i data-lucide="user-plus"></i> Theo dõi cửa hàng';
+            } else {
+                btn.classList.add('followed');
+                btn.style.background = 'var(--secondary)';
+                btn.style.borderColor = 'var(--secondary)';
+                btn.style.color = '#fff';
+                btn.innerHTML = '<i data-lucide="user-check"></i> Đang theo dõi';
+            }
+            lucide.createIcons();
+        }
+
+        function addToCart(id) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.push(id);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            document.querySelector('.cart-count').textContent = cart.length;
+
+            const btn = event.currentTarget;
+            btn.style.background = '#2E7D32';
+            btn.style.borderColor = '#2E7D32';
+            btn.innerHTML = '<i data-lucide="check" style="color:white"></i>';
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                btn.style = '';
+                btn.innerHTML = '<i data-lucide="plus"></i>';
+                lucide.createIcons();
+            }, 1500);
+        }
+    </script>
+</body>
+
+</html>

@@ -284,6 +284,39 @@
             document.getElementById('breadcrumb-product-name').textContent = product.name;
             document.getElementById('detail-full-description').textContent = product.description + " Đây là dòng sản phẩm đặc trưng được tuyển chọn từ những vùng nguyên liệu sạch, đảm bảo an toàn vệ sinh thực phẩm và giữ trọn hương vị truyền thống.";
 
+            // Determine shop details dynamically based on product origin
+            let shopInfo = {
+                id: 1,
+                name: "Cô Ba Bến Tre",
+                avatar: "https://ui-avatars.com/api/?name=Co+Ba+Ben+Tre&background=D44E28&color=fff",
+                location: "Bến Tre, Việt Nam",
+                rating: "4.9/5",
+                products: "85",
+                response: "98%"
+            };
+
+            if (product.origin === "Đồng Tháp") {
+                shopInfo = {
+                    id: 2,
+                    name: "Nem Lai Vung Út Sa",
+                    avatar: "https://ui-avatars.com/api/?name=Nem+Lai+Vung&background=4A6741&color=fff",
+                    location: "Đồng Tháp, Việt Nam",
+                    rating: "4.8/5",
+                    products: "42",
+                    response: "95%"
+                };
+            } else if (product.origin === "Tiền Giang") {
+                shopInfo = {
+                    id: 3,
+                    name: "Trái Cây Chín Hữu Vĩnh Kim",
+                    avatar: "https://ui-avatars.com/api/?name=Chin+Huu+Vinh+Kim&background=D4A373&color=fff",
+                    location: "Tiền Giang, Việt Nam",
+                    rating: "5.0/5",
+                    products: "12",
+                    response: "100%"
+                };
+            }
+
             const content = document.getElementById('product-content');
             content.innerHTML = `
                 <div class="product-main">
@@ -364,32 +397,32 @@
                 <div class="shop-section">
                     <div class="shop-info-main">
                         <div class="shop-avatar-wrapper">
-                            <img src="https://ui-avatars.com/api/?name=Cô+Ba+Bến+Tre&background=D44E28&color=fff" class="shop-avatar" alt="Shop Avatar">
+                            <img src="${shopInfo.avatar}" class="shop-avatar" alt="Shop Avatar">
                             <div class="shop-badge-premium">Yêu thích</div>
                         </div>
                         <div class="shop-details">
-                            <h3>Cô Ba Bến Tre</h3>
+                            <h3>${shopInfo.name}</h3>
                             <p><i data-lucide="check-circle" size="14"></i> Online 5 phút trước</p>
-                            <p style="margin-top: 5px;"><i data-lucide="map-pin" size="14"></i> Bến Tre, Việt Nam</p>
+                            <p style="margin-top: 5px;"><i data-lucide="map-pin" size="14"></i> ${shopInfo.location}</p>
                         </div>
                     </div>
                     <div class="shop-stats">
                         <div class="stat-box">
                             <span>Đánh giá</span>
-                            <span>4.9/5</span>
+                            <span>${shopInfo.rating}</span>
                         </div>
                         <div class="stat-box">
                             <span>Sản phẩm</span>
-                            <span>85</span>
+                            <span>${shopInfo.products}</span>
                         </div>
                         <div class="stat-box">
                             <span>Phản hồi</span>
-                            <span>98%</span>
+                            <span>${shopInfo.response}</span>
                         </div>
                     </div>
                     <div class="shop-actions">
-                        <button class="btn-chat"><i data-lucide="message-circle"></i> Chat ngay</button>
-                        <button class="btn-shop-outline"><i data-lucide="store"></i> Xem Shop</button>
+                        <button class="btn-chat" onclick="alert('Đang kết nối chat với ${shopInfo.name}!')"><i data-lucide="message-circle"></i> Chat ngay</button>
+                        <button class="btn-shop-outline" onclick="window.location.href='shop-detail.html?id=${shopInfo.id}'"><i data-lucide="store"></i> Xem Shop</button>
                     </div>
                 </div>
             `;
